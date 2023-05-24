@@ -1,0 +1,13 @@
+Jetbrains tool shortcut
+    * Editor font zoom +-
+        alt shift + - 0
+
+
+
+Windows
+    * Language change:
+                Shift + space
+    * Virtual desktop:
+                Window + Tab (Open virtual desktop)
+                Window + ctrl + arrow (Switch virtual desktop)
+

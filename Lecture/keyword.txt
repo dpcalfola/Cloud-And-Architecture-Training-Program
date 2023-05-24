@@ -1,0 +1,42 @@
+1. nfx protocol
+
+2. network
+    - 하나 이상의 Device 가
+    - 논리적 혹은 물리적으로 연결되어 있다
+
+
+
+3. 영역으로 번역되는 키워드
+    - Area
+    - Domain
+    - VLAN
+    - AS
+
+
+
+4. ISP / CSP
+    - Inter Service Provider (KT, SKT....)
+    - Cloud Service Provider
+
+
+5. ICT ?
+
+6. 벤더 회사 ?
+
+
+7. 프로토콜
+    - 네트워크 사이의 규약
+
+
+8. 프로토콜 제정 기관
+    * 기관의 종류
+        - IEEE
+        - ITU-T
+        - IETF
+
+    * 프로토콜을 정리한 문서
+        - RFC
+
+
+9. Gateway
+

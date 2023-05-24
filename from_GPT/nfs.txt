@@ -1,0 +1,38 @@
+How can I use nfs protocol on macOS
+
+
+To use the NFS (Network File System) protocol on macOS, you can follow these steps:
+
+1. Ensure that the NFS server is set up and running on the remote computer or device that you want to connect to. The specific steps for setting up an NFS server vary depending on the operating system and configuration.
+
+2. Open a Terminal window on your macOS computer. You can find Terminal in the "Utilities" folder within the "Applications" folder, or you can use Spotlight search to locate it.
+
+3. In the Terminal, use the `showmount` command to display the available NFS shares on the remote server. Enter the following command:
+```
+showmount -e <IP address or hostname>
+```
+Replace `<IP address or hostname>` with the IP address or hostname of the NFS server. For example:
+```
+showmount -e 192.168.1.100
+```
+This command will show you the available NFS shares and their mount points on the server.
+
+4. Choose a directory on your macOS computer where you want to mount the NFS share.
+
+5. In the Terminal, use the `mount` command to mount the NFS share. Enter the following command:
+```
+sudo mount -t nfs <IP address or hostname>:<remote directory> <local directory>
+```
+Replace `<IP address or hostname>` with the IP address or hostname of the NFS server, `<remote directory>` with the directory path of the NFS share on the server, and `<local directory>` with the directory path where you want to mount the NFS share on your macOS computer. For example:
+```
+sudo mount -t nfs 192.168.1.100:/shared /mnt/nfs
+```
+This command mounts the NFS share located at `/shared` on the NFS server with the IP address 192.168.1.100 to the `/mnt/nfs` directory on your macOS computer.
+
+6. Enter your administrator password when prompted by `sudo` command.
+
+7. After successful execution of the `mount` command, you should be able to access the NFS share through the local directory you specified.
+
+Note: By default, macOS uses the NFS version 3 protocol. If you need to use a different NFS version, you can specify it with the `-o vers=<version>` option in the `mount` command. For example, to use NFS version 4, you can add `-o vers=4` to the `mount` command.
+
+Remember that mounting an NFS share requires appropriate permissions and configuration on both the NFS server and the macOS client.

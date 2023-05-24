@@ -1,0 +1,42 @@
+1. STAR 기법
+
+    The STAR solution is a framework used in problem-solving and behavioral interviews to structure your response and provide a comprehensive answer. The acronym STAR stands for Situation, Task, Action, and Result. Here's a breakdown of each component:
+
+    1. Situation: Begin by setting the context and describing the specific situation or problem you encountered. Explain the background, the challenges or issues you faced, and any relevant details necessary to understand the situation.
+
+    2. Task: Clearly define the task or objective you were assigned or the goal you needed to achieve within the given situation. Describe what was expected of you and what you aimed to accomplish.
+
+    3. Action: Outline the actions you took to address the situation or solve the problem. Describe the specific steps you implemented, the decisions you made, and the strategies you employed. Focus on your individual contributions and highlight any skills or competencies you utilized.
+
+    4. Result: Explain the outcome of your actions. Share the specific results or achievements you accomplished, both quantitatively and qualitatively. Discuss the impact of your actions on the situation, project, team, or organization. If possible, quantify the results or provide specific examples to demonstrate the success of your solution.
+
+    By using the STAR solution framework, you provide a structured and concise response that showcases your problem-solving abilities, highlights your actions and decision-making process, and demonstrates the positive results you achieved. This format helps interviewers assess your skills, experience, and suitability for the role by evaluating your ability to handle challenges and deliver effective solutions.
+
+
+
+
+2. IDC ?
+
+    International Data Corporation: International Data Corporation is a global market intelligence and advisory firm specializing in providing insights and analysis on technology markets. IDC offers research, consulting services, and events to assist businesses, governments, and IT professionals in making informed decisions and understanding industry trends.
+
+
+
+3. On-premises ?
+
+    On-premises (or on-premise) refers to a computing or software deployment model in which an organization hosts and manages its own infrastructure and applications within its physical premises or data centers. In an on-premises environment, the organization owns and operates the hardware, software, and networking resources required for running its applications and storing its data.
+
+    Key characteristics of an on-premises deployment include:
+
+    1. Local infrastructure: The organization maintains and manages its own servers, storage devices, networking equipment, and other hardware resources within its own facilities.
+
+    2. Control and customization: With an on-premises deployment, organizations have full control over the hardware, software, configurations, and security measures implemented within their environment. This enables greater customization and tailoring of the infrastructure to specific needs.
+
+    3. Data sovereignty: Since the data and applications are hosted within the organization's premises, there is a higher degree of control and data sovereignty, as the organization retains ownership and physical control over its data.
+
+    4. Responsibility for maintenance: The organization is responsible for tasks such as hardware provisioning, software updates, security patches, backups, and overall infrastructure maintenance.
+
+    5. Initial investment: On-premises deployments typically involve upfront capital expenditure for purchasing hardware, software licenses, and infrastructure setup.
+
+    On-premises deployments are often favored by organizations that have stringent security and compliance requirements, need greater control over their data and infrastructure, or have specific performance or integration needs. However, on-premises solutions require significant upfront investment, ongoing maintenance, and may have limitations in terms of scalability and flexibility compared to cloud-based alternatives.
+
+    It's worth noting that on-premises deployments can coexist with hybrid or multi-cloud strategies, where organizations utilize a combination of on-premises infrastructure and cloud services to meet their specific needs.
