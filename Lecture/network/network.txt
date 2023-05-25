@@ -10,7 +10,10 @@
 
     * 장점: 공유
 
-    * 단점: 공유된 정보가 조작되거나 변조 되었을 가능성이 있다.
+    * 단점:
+        - 공유된 정보가 조작되거나 변조 되었을 가능성이 있다.
+        - 교차 검증 필요
+
     
     
     
@@ -25,7 +28,7 @@ network 종류를 두가지로 나눈다
         - LAN:
             - Local Area Network
             - 지금 교육 과정에서 Network 는 LAN으로 가정한다
-            - LAN == Newtwork == Brodcast Domain
+            - LAN, Network, Broadcast Domain
         - WAN: Wide Area Network
     
     
@@ -48,3 +51,14 @@ network 종류를 두가지로 나눈다
 
 
 IPv4 Address
+
+
+
+
+
+* 1.1.1.0/24
+    -> 24번쨰 비트 까지가 네트워크 주소이다.
+    -> / 가 붙은 순간 클래스를 따지지 않는다.
+    -> 마지막 0: 네트워크를 식별하고 있다
+    -> 가용ip: 254개
+    -> 브로드캐스트: 1개

@@ -40,3 +40,10 @@
     On-premises deployments are often favored by organizations that have stringent security and compliance requirements, need greater control over their data and infrastructure, or have specific performance or integration needs. However, on-premises solutions require significant upfront investment, ongoing maintenance, and may have limitations in terms of scalability and flexibility compared to cloud-based alternatives.
 
     It's worth noting that on-premises deployments can coexist with hybrid or multi-cloud strategies, where organizations utilize a combination of on-premises infrastructure and cloud services to meet their specific needs.
+
+
+
+
+4. Gateway
+
+     a device or a computer system that serves as an entry point or exit point between two different networks. It acts as a bridge, facilitating communication and data transfer between networks that use different protocols, addressing schemes, or technologies.

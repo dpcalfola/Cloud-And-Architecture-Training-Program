@@ -1,0 +1,30 @@
+ <서브네팅 예제 2>
+
+1. 205.81.10.0/24 네트워크를 7개의 네트워크로 사용할 수 있도록 Subneting 하시오.
+
+  (1) Subnet mask?
+  (2) Subnet의 개수?
+  (3) 가용 IP의 개수
+  (4) 마지막 Subnet의 대표주소는?
+  (5) 첫번째 Subnet의 Broadcast 주소는?
+  (6) 두번째 Subnet의 사용 가능한 IP 범위는?
+
+
+2. 189.101.7.0/24 네트워크를 각 네트워크 당 50개의 Host가 사용할 수 있도록 Subneting하시오.
+
+  (1) Subnet mask?
+  (2) Subnet의 개수?
+  (3) 가용 IP의 개수
+  (4) 마지막 Subnet의 대표주소는?
+  (5) 첫번째 Subnet의 Broadcast 주소는?
+  (6) 두번째 Subnet의 사용 가능한 IP 범위는?
+
+
+3. 151.92.0.0 /16 네트워크를 각 네트워크 당 6500개의 Host가 사용할 수 있도로 Subneting을 하시오.
+
+  (1) Subnet mask?
+  (2) Subnet의 개수?
+  (3) 가용 IP의 개수
+  (4) 마지막 Subnet의 대표주소는?
+  (5) 첫번째 Subnet의 Broadcast 주소는?
+  (6) 두번째 Subnet의 사용 가능한 IP 범위는?
