@@ -39,4 +39,12 @@ network 종류를 두가지로 나눈다
             - server and client
         
         참고: 개발자가 고민하는 영역
-        
+
+
+
+
+
+
+
+
+IPv4 Address

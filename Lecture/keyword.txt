@@ -40,3 +40,112 @@
 
 9. Gateway
 
+
+
+10. 계층 모델
+
+    10.0 계층모델을 사용하는 이유
+
+    10.1
+        OSI 7 layer
+            - APNTSDP
+            - All People Seem To Need Data Processing
+            - 개발할 떄 주로 사용된다
+
+
+    10.2
+        TCP/IP (4계층)
+            - 운영할 때 주로 사용된다
+
+        TCP
+            - Transmission Control Protocol
+
+
+11. 4 계층
+    11.1
+        11.1.1 TCP 와 UDP (전송 계층)
+                - TCP: 신뢰성이 있다. 제어가 가능하 다
+                - UDP: 신뢰성이 없다. 제어가 불가능함. 신뢰성이 없어도 되는 전송에 사용
+
+    11.2 신뢰성 (네트워크에서)
+            - 신뢰성이 있다 == 제어가 가능하다
+            - Trust 구간과 UnTrust 구간으로 나뉜다
+            - 일반적으로 LAN 은 T 구간으로, WAN 은 UN 구간으로 가정한다
+
+    11.3 4계층에서 사용하는 주소
+        - Port number
+        - 포트 번호는 일반적으로 개발자가 정한다
+        - 아키텍쳐 운영자는 개발자가 지정한 포트번호를 사용하여
+            TCP와 UDP 둘 중 하나의 방식을 결정하여 전송한다
+
+
+
+    11.4
+        11.4.1 TCP 3Way Handshake  => 성공시 세션 형성(웹)
+                Client -> Server: SYN
+                Server -> Client: SYN + ACK
+                Client -> Server: ACK
+
+        11.4.2 TCP 4way handshake (수업 자료 참고)
+                C -> S: FIN
+                C -> S: ACK
+                C -> S: FIN
+                S -> C: ACK
+        11.4.3 ACK -> Acknowledgment Number (수업 자료 30p)
+
+
+
+
+12. bit
+    12.1
+        1 bit = 2 개
+        2 bit = 4 개
+        3 bit = 8 개
+        ...
+        n bit = 2^^32 개
+
+
+
+
+
+
+
+
+
+13. NAT Service
+    13.1 NAT:
+        Network Address Translation
+
+    13.2 Brocast Address
+    13.3
+
+
+
+
+14. CIDR (사이더)
+    14.1 Classless Inter-Domain Routing
+
+
+
+
+
+15. A, B, C, D, E class
+    - E: 연구용
+    - D: 유투브 같이 따로 신청헤서 사용
+
+
+
+16. 특별한 IP 주소:
+        사용할 수 없는 IP 주소
+            - 0.0.0.: 모든 네트워크를 의미
+            - 255.255.255.255: 브로드캐스트 주소로 사용
+            - 127. 로 시작하는 주소: 루프백 (내부 프로그램이 사용)
+
+
+
+17. 사설 IP 주소
+    A class: 10.x.x.x
+    B class: 172.16.x.x
+    C class: 192.168.x.x
+    D class: 사용불가
+    E class: 사용불가
