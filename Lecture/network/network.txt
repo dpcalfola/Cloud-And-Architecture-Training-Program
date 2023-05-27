@@ -62,3 +62,70 @@ IPv4 Address
     -> 마지막 0: 네트워크를 식별하고 있다
     -> 가용ip: 254개
     -> 브로드캐스트: 1개
+
+
+
+* MAC address
+    -> 48bit
+
+
+
+* 인터넷이 안될때 프로토콜
+    - 장치 연결상태 확인 (랜선, 와이파이)
+    - 장치의 정상동작여부 확안
+        - icmp ==> ping
+        - ping 127.0.0.1
+        - ping localhost
+        - ping gateway
+        - ping 168.126.63.1
+        - Route check
+            - tracert 168.126.63.1 (Windows)
+            - traceroute 168.126.63.1 (macOS)
+
+
+
+
+
+
+
+
+
+
+* TCP/IP 계층
+4 layer  - Port     - L4 switch (L4 switch)
+3 layer  - IP       - L3 switch (Router)
+2 layer  - MAC      - L2 switch (switch)
+1 layer  - Physical - L1 switch (hub)
+
+
+
+*
+    3 layer - Collision Domain(o) Broadcast Domain(o)
+    2 layer - Collision Domain(o) Broadcast Domain(x)
+
+
+
+
+* OSI 7 layer
+7 layer - Application
+6 layer - Presentation
+5 layer - Session
+4 layer - Transport
+3 layer - Network
+2 layer - Data Link
+1 layer - Physical
+
+
+
+
+
+
+
+
+
+강의실의 로컬 네트워크를 구성할때 스위치가 아닌 라우터를 사용하면
+아이피가 분할되어 컴퓨터끼리 통신할 수 없다. (각각의 컴퓨터가 네트워크를 구성하게 된다)
+
+
+스위치 - 네트워크를 구성하는 장치
+라우트 - 네트워크를 연결하는 장치

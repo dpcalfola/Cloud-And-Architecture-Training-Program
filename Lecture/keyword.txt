@@ -66,7 +66,7 @@
 
     10.3
         3계층
-            - ICMP, ARP, RARP, IP
+            - ICMP, ARP(Address Resolution Protocol), RARP, IP
             - 루트를 찾아가는 과정
 
 11. 4 계층
@@ -205,6 +205,12 @@
 
 
 21. 충동영역
+    - Collision Domain
+        - MAC 주소에 의해 충돌영역을 구분한다
+
+    - 충돌이 일어나는 영역
+    - 허브는 충돌영역이다
+    - 스위치는 충돌영역이 아니다
 
 
 22. VPC
@@ -231,3 +237,31 @@
 
 27. finOps
     - Finance + Operations
+
+
+28. Hub and Spoke
+    - 허브와 스포크
+    - 허브: 중앙 집중식
+    - 스포크: 지점
+
+
+
+29. CSNA (Bus Topology)
+    - Carrier sense multiple access
+    - Holigan Access?
+    - CSMA/CD
+
+
+
+
+
+30. ICMP
+     - Internet Control Message Protocol
+     - 연결이 정상적으로 연결 되어있는지 확인하기 위한 프로토콜
+     - ping 을 보낼 때 사용한다
+
+
+
+31. TTL
+    - Time To Live
+    - 하나의 장비에서 만들에진 데이터가 이동할 수 있는 최대 장비수
