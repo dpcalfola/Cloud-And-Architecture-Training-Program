@@ -1,0 +1,12 @@
+* S.IP
+    A: x.IP
+
+* D.IP
+    B: z.IP
+
+
+
+< L2 >
+* S.MAC: L2 Header - Datagram - L2 Footer
+
+* D.MAC: L2 Header - Datagram - L2 Footer

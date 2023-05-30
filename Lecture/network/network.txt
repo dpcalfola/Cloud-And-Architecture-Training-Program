@@ -92,9 +92,9 @@ IPv4 Address
 
 
 * TCP/IP 계층
-4 layer  - Port     - L4 switch (L4 switch)
-3 layer  - IP       - L3 switch (Router)
-2 layer  - MAC      - L2 switch (switch)
+4 layer  - Port     - L4 switch (L4 switch) - Segment
+3 layer  - IP       - L3 switch (Router)    - Datagram
+2 layer  - MAC      - L2 switch (switch)    - Frame
 1 layer  - Physical - L1 switch (hub)
 
 
@@ -129,3 +129,55 @@ IPv4 Address
 
 스위치 - 네트워크를 구성하는 장치
 라우트 - 네트워크를 연결하는 장치
+
+
+
+
+
+
+
+
+
+
+
+*
+    LAN = Network = Brocast Domain
+
+
+*
+    각 계층에서 앞단에 정보를 붙여 Capsulation 시킨다
+    L2 - Frame 에서는 뒷단에 손실여부를 확인 할 수 있는 CRC 를 붙인다
+
+
+
+* L2 사이에서의 네트워크
+    <-> MAC 주소를 통해 통신한다
+
+
+
+
+
+
+* 통신 과정에서 원칙적으로 L3 주소는 불변
+    -> 그러나 L2 주소는 바뀔수 있다.
+    -> MAC 주소 자체가 바뀐다는 뜻이 아니라 MAC 주소를 가진 장치가 바뀔수 있다는 뜻.
+    (-> 예를 들어 스위치를 통해 통신하는 경우 스위치가 MAC 주소를 바꿔서 통신한다)
+
+
+
+
+
+* ARP
+    - ARP header 에 Broadcast 주소를 넣어서 보낸다
+        - ARP Request:
+            Broadcast 로 이루어지며 받는 장비는 Send H/W 주소와 IP주소를 학습하여 ARP cache table 에
+            저장한다
+        - ARP Reply:
+            Unicast로 정송이 되면 전송 받은 장비는 Send H/W주소와 IP주소를 학습하여 ARP cache table 에
+            저장한다
+        - ARP 는 보안적 취약점이 존재한다
+            -> Solution 1: ARP table 에 등록된 정보만 사용한다 (<-> ARP spoofing)
+
+
+
+* 스위치 연결 단자 하나가 하나의 충돌 영역을 갖는다

@@ -265,3 +265,12 @@
 31. TTL
     - Time To Live
     - 하나의 장비에서 만들에진 데이터가 이동할 수 있는 최대 장비수
+
+
+32. IP
+    - Internet Protocol
+
+
+
+33. ARP
+    - Address Resolution Protocol

@@ -1,10 +1,4 @@
 class IpAddress:
-    target_subnet: int
-    target_host: int
-
-    subnet_mask: str
-    num_of_available_ip: int
-    subnet_list: list[dict]
 
     def __init__(self, cidr_address):
         self.cidr_address: str = cidr_address

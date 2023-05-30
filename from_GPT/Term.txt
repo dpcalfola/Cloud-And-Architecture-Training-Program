@@ -47,3 +47,17 @@
 4. Gateway
 
      a device or a computer system that serves as an entry point or exit point between two different networks. It acts as a bridge, facilitating communication and data transfer between networks that use different protocols, addressing schemes, or technologies.
+
+
+
+
+
+
+
+5. ARP
+
+    ARP stands for Address Resolution Protocol. It is a communication protocol used in computer networks to map an IP address to a physical or MAC address. In an Ethernet network, each device has a unique MAC address assigned to its network interface card (NIC). However, when devices communicate with each other over IP, they use IP addresses instead of MAC addresses.
+
+    ARP allows a device to discover the MAC address associated with a given IP address within the local network. When a device wants to communicate with another device, it checks its ARP cache to see if it already has the MAC address of the destination IP address. If the MAC address is not in the cache, the device sends an ARP request packet to the network asking for the MAC address associated with the IP address. The device with the corresponding IP address responds with an ARP reply packet containing its MAC address, allowing the requesting device to update its ARP cache and establish communication with the destination device.
+
+    ARP is a critical component of the TCP/IP protocol suite and is used extensively in local area networks (LANs) and other IP-based networks to facilitate communication between devices.
