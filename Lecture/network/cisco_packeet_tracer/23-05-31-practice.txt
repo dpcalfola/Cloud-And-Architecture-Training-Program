@@ -1,0 +1,120 @@
+< Term >
+
+    DEC:
+        - DCE stands for Data Circuit-terminating Equipment
+        - Clock 을 제공하는쪽
+    DTE:
+        - DTE stands for Data Terminal Equipment
+        - Clock 을 받는쪽
+
+
+    MTU:
+        - Maximum Transmission Unit
+
+
+
+
+
+
+
+
+
+< Command >
+
+    # show interfaces
+        - bw: bandwidth
+        - 모든 인터페이스 정보를 본다
+
+
+    # show interfaces serial 1/0
+        - serial 1/0 인터페이스 정보를 본다
+
+
+    # show ip interface brief
+    # show ip interface serial 0/0/0
+
+
+
+
+
+< Memo >
+
+    # Serial is up
+        -> 1계층이 정상
+        -> Carrier Detect
+
+    # line protocol is up
+        -> 2계층이 정상
+        -> Keepalives
+
+
+
+
+< Practice 1. >
+    Goal: R1 에서 R0로 텔렛 연결
+
+    /Lecture/network/images/IMG_4527.png
+
+
+    *
+        (config)# line vty ?
+
+        (config)# line vty 0 4
+            0, 1, 2, 3, 4 -> 5
+
+
+
+
+    * telnet
+
+
+
+
+
+
+< Example 1 >
+
+filename: Basic_Lab.jpg
+    1. Cable
+
+
+
+
+
+< Example 2 >
+
+
+    1. Set hostname
+    2. Administrator setting
+        -> username and password
+    3.
+        3.1 layer setting
+            -> (config)# interface serial 0/0/0
+        3.2
+            3.2.1 E2_R1
+                - 10.1.12.0/24
+                - Subnet Mask:
+
+    3. Ip address setting
+
+
+
+
+
+< Example 3 >
+
+    * Goal: OS update
+
+
+
+
+    1. Backup data
+        copy flash: tftp:
+        ( show flash )
+
+
+    2. Update OS
+    3. Recover data
+
+
+2900-UNIVERSALK9-M), Version 15.1(4)

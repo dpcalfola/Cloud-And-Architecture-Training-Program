@@ -61,3 +61,20 @@
     ARP allows a device to discover the MAC address associated with a given IP address within the local network. When a device wants to communicate with another device, it checks its ARP cache to see if it already has the MAC address of the destination IP address. If the MAC address is not in the cache, the device sends an ARP request packet to the network asking for the MAC address associated with the IP address. The device with the corresponding IP address responds with an ARP reply packet containing its MAC address, allowing the requesting device to update its ARP cache and establish communication with the destination device.
 
     ARP is a critical component of the TCP/IP protocol suite and is used extensively in local area networks (LANs) and other IP-based networks to facilitate communication between devices.
+
+
+
+
+
+
+6.
+
+    MTU stands for Maximum Transmission Unit. It is a parameter that defines the maximum size of a data packet that can be transmitted over a network link in a single frame or packet without fragmentation. In other words, it represents the largest amount of data that can be sent in one transmission without being divided into smaller units.
+
+    The MTU size is usually measured in bytes and varies depending on the network technology and the underlying data link layer protocol. Different network technologies and protocols have different MTU limits, and it's important to configure the MTU appropriately to avoid issues with data transmission and network performance.
+
+    When a device sends a packet that exceeds the MTU size of a network link, fragmentation may occur. Fragmentation is the process of breaking the packet into smaller units, or fragments, that fit within the MTU limit of the network link. The fragments are reassembled at the receiving end to reconstruct the original packet. However, fragmentation can introduce overhead, additional processing, and potential delays in data transmission.
+
+    It's worth noting that the MTU value can vary in different network layers. For example, in the context of TCP/IP networking, the MTU can refer to the maximum size of the payload within an IP packet, excluding the IP and transport layer headers. Additionally, the Path MTU (PMTU) refers to the smallest MTU value along the entire path between the source and destination, considering the network devices and links traversed.
+
+    Configuring the correct MTU value is crucial for efficient and reliable network communication. It requires consideration of factors such as the network technology, protocol overhead, potential fragmentation, and the capabilities of the devices and links involved in the communication.

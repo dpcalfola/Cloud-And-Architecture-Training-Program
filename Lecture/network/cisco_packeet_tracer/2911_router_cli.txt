@@ -1,0 +1,59 @@
+There's three mode
+
+    Router> ,
+    Router# ,
+    Router(config)#
+
+
+
+
+
+
+< Command >
+
+    (config)#
+        banner motd # Message #
+            - # 과 # 사이에 메시지 작성
+            - 접속 인사 메시지 설정
+
+
+
+
+    * 시간 설정
+    #
+        show clock
+
+        clock set ?
+            - 현재 시간 설정
+            - ex) clock set 12:00:00 12 May 2019
+
+
+
+
+    * Password setting
+
+        - # enable password
+            - 암호 설정
+            - 암호는 암호화 되지 않음
+            - ex) enable password cisco
+        - # enable secret
+            - 암호 설정
+            - 암호는 암호화 됨
+            - ex) enable secret cisco
+
+        - 패스워드 삭제
+            - no enable password
+            - 입력한 명령어를 취소할 때는 실행한 명령어 앞에 no를 붙인다
+
+
+    *
+        # end
+            - 모든 단계 종료
+        # exit
+            - 전 단계
+
+
+
+    * How to escape Error " Translating domain server (255.255.255.255).... "
+        -> ctrl + shift + 6
+

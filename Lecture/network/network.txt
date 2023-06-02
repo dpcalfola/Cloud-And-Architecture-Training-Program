@@ -168,7 +168,7 @@ IPv4 Address
 
 
 * ARP
-    - ARP header 에 Broadcast 주소를 넣어서 보낸다
+    - ARP header 에 Broadcast 주소를 넣어서 보낸 다
         - ARP Request:
             Broadcast 로 이루어지며 받는 장비는 Send H/W 주소와 IP주소를 학습하여 ARP cache table 에
             저장한다
@@ -181,3 +181,18 @@ IPv4 Address
 
 
 * 스위치 연결 단자 하나가 하나의 충돌 영역을 갖는다
+
+
+
+
+* Flooding, Forwarding
+    - Flooding: Broadcast 주소로 보내는 것
+    - Forwarding: Unicast 주소로 보내는 것
+
+
+
+
+
+
+* Switch 에 전원이 없는 이유
+    -> 절대로 꺼지면 안됨
