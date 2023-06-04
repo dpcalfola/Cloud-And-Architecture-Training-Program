@@ -1,0 +1,176 @@
+< 문제 >
+
+개요
+이 장에서는 라우터의 기본 설정과 인터페이스 설정에 대해서 학습하도록 한다.
+학습 목표
+- Router 기본 설정 학습
+- Router의 인터페이스 설정 방법 이해
+- Static Routing에 대한 이해
+시나리오
+당신은 Hackers라는 회사의 네트워크 관리자이다. 회사내의 네트워크 망은 주어진 토폴로지처럼 이루어져 있다.
+당신의 업무는 회사내에 존재하는 3개의 라우터를 설정하고 관리하는 것이다. 라우터 및 PC에는 어떠한 설정되어있지 않다. IP설정 및 기본 Routing설정을 모두 당신이 해야 한다.
+
+
+각 장비의 IP설정은 다음 표와 같다.
+Device	Interface	IP Address	Subnet Mask	Default Gateway
+R11	Fa0/0	172.16.3.1	255.255.255.0	N/A
+Serial0/0	172.16.2.1	255.255.255.0	N/A
+R12	Fa0/0	172.16.1.1	255.255.255.0	N/A
+Serial0/0	172.16.2.2	255.255.255.0	N/A
+Serial0/1	192.168.1.2	255.255.255.0	N/A
+R13	Fa0/0	192.168.2.1	255.255.255.0	N/A
+Serial0/1	192.168.1.1	255.255.255.0	N/A
+PC1	NIC	172.16.3.10	255.255.255.0	172.16.3.1
+PC2	NIC	172.16.1.10	255.255.255.0	172.16.1.1
+PC3	NIC	192.168.2.10	255.255.255.0	192.168.2.1
+
+문제
+1. 모든 라우터의 기본 설정은 다음과 같다.
+- 라우터의 이름 : 토폴로지상에 있는 라우터 이름으로 설정
+- Enable 암호 : cisco
+- Domain 이름해석 기능 끄기(no ip domain-lookup)
+- Console 세션 타임아웃 시간 : 무한대
+- Console 메시지 동기화 설정
+- vty설정 : 암호없이 로그인 가능하도록 설정
+
+2. 위 표에 주어진 정보대로 라우터의 Interface에 IP 및 PC의 IP를 설정하라.
+- 대역폭은 1024kbps이다.
+- Encapsulation은 HDLC로 설정하라
+
+3. 모든 라우터에 Static Routing을 설정하라.
+- Static Routing을 설정할 때 나가는 경로는 모두 Gageway 주소를 사용하여 설정해야 한다.
+- (자신의 인터페이스 이름으로 설정하지 말것!!)
+
+* telnet의 가상 세션은 0번에서 4번까지 기본 5개를 설정한다.
+* 모든 라우터 설정은 startup-config에 저장해야 한다.
+결과확인 순서
+1. "show ip interface brief"명령어를 통해서 설정한 모든 Interface상태가 up인지 확인한다.
+2. 각 라우터에서 직접 연결되어 있는 라우터의 인터페이스에 Ping이 되는지 확인한다.
+3. "show ip route"명령를 사용하여 라우팅 테이블에 모든 네트워크 정보가 생성되었는지 확인한다.
+4. 모든 구간에서 통신이 되는지 확인한다.
+
+
+
+
+
+
+
+
+
+< Solution >
+
+
+
+0. Command for checking status
+
+	0.1 Check Running-config
+		Router#show running-config
+
+	0.2 Check Interface status
+		Router#show ip interface brief
+
+	0.3 Check Routing Table
+		Router#show ip route
+
+
+
+
+
+1. Router Setting (R11, R12, R13)
+	1.1 Set Router hostname
+		Router>enable
+		Router#configure terminal
+		Router(config)#hostname R11
+		R11(config)#
+
+	1.2 Set password for enable
+		R11(config)#enable secret cisco
+
+	1.3 Turn off Auto Domain lookup
+		1.3.1 command:
+			R11(config)#no ip domain lookup
+		1.3.2
+			* Escape DNS looking up message -> Ctrl + shift + 6)
+
+	1.4 Turn off session timeout
+		R11(config)#line console 0
+		R11(config-line)#exec-timeout 0
+
+	1.5 Synchronize console message
+	    R11(config-line)#logging synchronous
+
+	1.6 Set vyt
+		1.6.1 Command:
+			R11(config)#line vty 0 4
+			R11(config-line)#no login
+		1.6.2
+			* "no login" means -> login without password
+
+
+
+
+2. Interface Setting
+
+	2.1 at PC (PC1, PC2, PC3)
+
+		2.1.1 PC1 -> Desktop -> IP Configuration
+			- Insert IP Address, Subnet Mask, Default Gateway values from the table above
+
+
+	2.2 at Router (R11, R12, R13)
+
+		2.2.1 FastEthernet
+			- Set Interface IP
+				R11(config)#interface FastEthernet 0/0
+				R11(config-if)#ip address {address} {subnet mask}
+
+			- bandwidth
+				R11(config-if)#bandwidth 1024
+
+			- (WERNNING) FastEthernet 의 encapsulation 설정
+			    -> encapsulation 명령어 불가능
+			    -> 이유 검색해볼것
+
+			- Turn on interface
+				R11(config-if)#no shutdown
+
+		2.2.2 Serial
+			- Set Interface IP
+				R11(config)#interface serial 0/0
+				R11(config-if)#ip address {address} {subnet mask}
+
+			- bandwidth
+				R11(config-if)#bandwidth 1024
+
+			- clock rate
+				R11(config-if)#clock rate 1000000
+					- ??????????????????????????
+
+			- encapsulation
+				R11(config-if)#encapsulation hdlc
+
+			- Turn on interface
+				R11(config-if)#no shutdown
+
+		2.2.3 Save running-config to startup-config
+			R11#copy running-config startup-config
+
+
+
+3. Routing
+
+	3.1 To PC ((PC1), PC2, PC3)
+
+		!! WERNNING !!
+			destination network -> Use Representative IP address of target Device
+			gateway address
+				-> Use IP address of next router for reach destination (중간 지점의 라우터 IP)
+				-> No Representative IP address,
+
+
+		3.1.1 Routing
+				- R11(config)#ip route {destination network - PC2} {subnet mask} {gateway address }
+				- R11(config)#ip route {destination network - PC3} {subnet mask} {gateway address }
+				- R11(config)#ip route {destination network - R13} {subnet mask} {gateway address }
+
+
