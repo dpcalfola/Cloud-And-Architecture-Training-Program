@@ -1,0 +1,113 @@
+
+* (config-line)# no ip domain lookup
+    -> 잘못된 명령어를 입력했을 때, DNS 서버에게 물어보지 않도록 설정
+
+* (config-line)# logging synchronous
+    -> 잘못된 명령어를 입력했을 때, 로그가 출력되지 않도록 설정
+
+
+
+
+
+
+
+
+* # show ip route
+    -> 라우팅 테이블을 보여줌
+
+* (config)# ip route ip subnet-mask next-hop-address
+    -> 라우팅 테이블에 라우팅 정보를 추가함
+
+
+
+
+
+
+
+* Static Routing 의 문제점
+    라우팅 테이블이 너무 많아진다
+
+    Solution 1.
+        * Default Route
+            - Default Gateway 를 성정한다 (0.0.0.0 All 0s 라는 의미로, 모든 IP 주소를 의미한다)
+
+            - 설정 명령어:
+                - (config)# ip route 0.0.0.0 0.0.0.0 serial 1/1
+
+            - 문제점
+                - 루프 발생 가능성
+                  - 문제 ex)
+                        A default: B
+                        B default: A
+                        -> 실제로 무한 루프로 이어지지는 않는다.
+                        -> 데이터에 카운터가 있고 카운터가 0이되면 데이터는 소멸한다.
+
+                  - 한방향으로만 설정해야 한다
+
+
+
+
+
+
+
+* ping 에서 source 주소를 지정하는 방법
+    - Cisco: ping ip-address source ip-address
+    - Linux: ping -I ip-address ip-address
+    - Mac: ping -S ip-address ip-address
+    - Windows: ping -S ip-address ip-address
+
+
+
+
+* ip routig
+    - 차이점
+        - ip route ip-address subnet-mask next-hop-addres
+        - ip route ip-address subnet-mask interface
+            -->> interface 방식은 목적지의 Proxy ARP 기능이 있지 않으면 동작하지 않는다.
+            -->> next-hop-address 방식은 목적지의 Proxy ARP 기능이 있지 않아도 동작한다.
+
+
+
+
+* 실무에서 사용하는 ARP 프로토콜 종류 3가지
+    - ARP-request
+    - Proxy ARP
+    - Gratuitous ARP
+
+
+
+
+
+* 발표관련
+    - 주제:
+        - HTTP
+        - DNS
+        - ARP
+        - ICMP
+        - TCP
+        - UDP
+        - DHCP
+
+
+2조 주제: HTTP
+    - Where it is used?
+        - Web Browser
+        - Web Server
+        - Web Application
+        - Mobile Application
+        - IoT Application
+        - API Application
+    - Version
+    - Cookies, Session
+    - HTTP Method (GET, POST, PUT, DELETE)
+    - HTTP Header
+    - HTTP Status Code
+    - HTTP Request, Response
+    - HTTP vs HTTPS
+    - HTTP vs HTTP2 vs HTTP3
+    - 실습 자료 준비? 시연?
+        - API Server ?
+        - Postman
+
+
+
