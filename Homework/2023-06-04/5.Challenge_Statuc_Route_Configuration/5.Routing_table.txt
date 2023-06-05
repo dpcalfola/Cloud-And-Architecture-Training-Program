@@ -1,0 +1,55 @@
+Task 2: Assign IP Address on the Interface
+
+    2.1 Complete Routing Table
+
+        * Campus
+            - Fa 0/0
+                - IP Address: 192.168.2.193 (4번 서브넷의 첫번째 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: N/A
+            - Serial 0/0
+                - IP Address: 192.168.2.129 (3번 서브넷의 첫번째 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: N/A
+
+        * HQ
+            - Fa 0/0
+                - IP Address: 192.168.2.64 + 1 (2번 서브넷)
+                - Subnet MAsk:  255.255.255.192
+                - Default Gateway: N/A
+            - Serial 0/0
+                - IP Address: 192.168.2.130 (3번 서브넷의 두번째 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: N/A
+            - Serial 0/1
+                - IP Address: 209.165.201.2
+                - Subnet MAsk:255.255.255.252
+                - Default Gateway: N/A
+
+        * ISP
+            - Fa 0/0
+                - IP Address:209.265.200.225
+                - Subnet MAsk:255.255.255.224
+                - Default Gateway: N/A
+            - Serial 0/1
+                - IP Address:209.265.201.1
+                - Subnet MAsk: 255.255.255.252
+                - Default Gateway: N/A
+
+        * PC1
+            - NIC
+                - IP Address:  192.168.2.254 (4번 서브넷 마지막 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: ?
+
+        * PC2
+            - NIC
+                - IP Address: 192.168.2.126 (2번 서브넷 마지막 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: ?
+
+        * Web Server
+            - NIC
+                - IP Address: 209.265.200.254
+                - Subnet MAsk:255.255.255.224
+                - Default Gateway: 209.165.200.255

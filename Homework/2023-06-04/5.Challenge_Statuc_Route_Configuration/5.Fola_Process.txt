@@ -157,8 +157,126 @@ Web Server에서 Topology상에 있는 모든 네트워크에 통신이 되는�
 < Solution >
 
 
-Step 2. Topology Diagram Subnetting
 
-	* 192.168.2.0/24 하나의 네트워크가 60개의 호스트를 가질 수 있도록 서브네팅하기
-		->
+Task 1. Subnetting
 
+
+    1.1 Topology Diagram Subnetting
+
+        * 192.168.2.0/24 하나의 네트워크가 60개의 호스트를 가질 수 있도록 서브네팅하기
+            - 1번 서브넷:
+                192.168.2.0/26 255.255.255.192
+            - 2번 서브넷:
+                192.168.2.64/26 255.255.255.192
+            - 3번 서브넷:
+                192.168.2.128/26 255.255.255.192
+            - 4번 서브넷:
+                192.168.2.192/26 255.255.255.192
+
+
+
+
+
+
+
+Task 2: Assign IP Address on the Interface
+
+    2.1 Complete Routing Table
+
+        * Campus
+            - Fa 0/0
+                - IP Address: 192.168.2.193 (4번 서브넷의 첫번째 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: N/A
+            - Serial 0/0
+                - IP Address: 192.168.2.129 (3번 서브넷의 첫번째 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: N/A
+
+        * HQ
+            - Fa 0/0
+                - IP Address: 192.168.2.64 + 1 (2번 서브넷)
+                - Subnet MAsk:  255.255.255.192
+                - Default Gateway: N/A
+            - Serial 0/0
+                - IP Address: 192.168.2.130 (3번 서브넷의 두번째 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: N/A
+            - Serial 0/1
+                - IP Address: 209.165.201.2
+                - Subnet MAsk:255.255.255.252
+                - Default Gateway: N/A
+
+        * ISP
+            - Fa 0/0
+                - IP Address:209.265.200.225
+                - Subnet MAsk:255.255.255.224
+                - Default Gateway: N/A
+            - Serial 0/1
+                - IP Address:209.265.201.1
+                - Subnet MAsk: 255.255.255.252
+                - Default Gateway: N/A
+
+        * PC1
+            - NIC
+                - IP Address:  192.168.2.254 (4번 서브넷 마지막 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: ?
+
+        * PC2
+            - NIC
+                - IP Address: 192.168.2.126 (2번 서브넷 마지막 가용 아이피)
+                - Subnet MAsk: 255.255.255.192
+                - Default Gateway: ?
+
+        * Web Server
+            - NIC
+                - IP Address: 209.265.200.254
+                - Subnet MAsk:255.255.255.224
+                - Default Gateway: 209.165.200.255
+
+
+
+
+
+
+
+
+
+TASK 3. Basic Router Configurations
+
+    HQ, ISP, Campus
+
+            * HQ
+                - Setting hostname
+                    Router>enable
+                    Router#configure terminal
+                    Router(config)#hostname HQ
+
+                - No DNS lookup
+                    Router(config)#no ip domain lookup
+
+                - Setting enable secret password
+                    Router(config)#enable secret cisco
+
+                - Console message synchronization
+                    Router(config)#line console 0
+                    Router(config-line)#logging synchronous
+
+                - Console timeout: Infinite
+                    Router(config-line)#exec-timeout 0
+
+                - VTY 0 4 and no password
+                    Router(config)#line vty 0 4
+                    Router(config-line)#no login
+
+
+
+
+Task 4. Serial and Ethernet Interfaces Configuration
+
+
+    - FastEthernet
+        Campus(config)#interface FastEthernet 0/0
+        Campus(config-if)#ip address 192.168.2.193 255.255.255.192
+        Campus(config-if)#no shutdown

@@ -1,0 +1,155 @@
+2 Router Connect
+
+Connect PC for using terminal
+
+
+< Command >
+
+    ip 192.168.10.1/24 182.168.10.254
+
+    show
+
+
+    ip loopback
+
+
+
+
+
+AD :
+    ㅎㅏ나 이상의 라우팅 프로토콜에 의 해 학습된 경로중 어느 경로를 도욱 신뢰할 것인가
+
+    1. AD가 낮은 경로를 선택한다.
+    2. AD가 같다면 Metric을 비교한다.ㅎ
+    3. AD가 같고 Metric도 같다면 Load Balancing을 한다.
+
+
+
+Protocol at network layer:
+    BGP : Border Gateway Protocol
+    OSPF : Open Shortest Path First
+    RIP : Routing Information Protocol
+    EIGRP : Enhanced Interior Gateway Routing Protocol
+    IS-IS : Intermediate System to Intermediate System
+    IGRP : Interior Gateway Routing Protocol
+    IDRP : Inter-Domain Routing Protocol
+
+
+
+부하분산경로:
+
+
+
+
+
+* Distance vector
+    -> 전체 경로를 파악하지 못한다
+        -> 자신에게 연결된 기기의정보만 알고 있음
+
+
+* Metric of Distance vector
+    -> Hop count
+    -> Bandwidth
+    -> Delay
+    -> Load
+    -> Reliability
+    -> Cost
+    -> MTU
+    -> Clock
+    -> IP address
+    -> Etc...
+
+* Link State (<-> Distance vector)
+    -> 링크의 상태정보를 확인하여 경로를 파악한다.
+    -> 경로 계산에 들어가는 리소스가 크다
+
+
+* SPF Algorithm
+
+* OSPF protocol
+    -> 영역을 분리하여 사용한다.
+    -> 트래픽 엔지니어링이 가능한 프로토콜이다.
+    -> 오래된 프로토콜이지만 아직 사용중
+
+    - Information
+        -> Link State
+        -> Metric : Cost
+        -> AD : 110
+        -> Administrative Distance
+            -> 0 : Connected
+            -> 1 : Static
+            -> 90 : EIGRP
+            -> 110 : OSPF
+            -> 120 : RIP
+            -> 170 : External EIGRP
+            -> 200 : Internal BGP
+            -> 255 : Unknown
+
+
+
+
+
+
+
+
+
+
+
+* 다이나믹 라우팅 실습
+
+    * RIP
+        -> Routing Information Protocol
+        -> Distance Vector
+        -> Metric : Hop count
+        -> AD : 120
+        -> 15 hop count 이상은 무한대로 간주한다.
+        -> 30초마다 업데이트를 한다.
+        -> 180초마다 라우팅 테이블을 초기화 한다.
+        ->
+
+
+    * RIP Practice
+        - 클래스 기준으로 네트워크를 나눈다.
+
+        - command
+            clear ip route *
+            show ip protocols
+            router rip
+                network
+
+         - Upgrade version 2
+                - contents:
+                    -> 15 hop count 이상은 무한대로 간주하지 않는다.
+                    -> 30초마다 업데이트를 한다.
+                    -> 180초마다 라우팅 테이블을 초기화 하지 않는다.
+                - command
+                    router rip
+                        version 2
+                        (no auto-summary)
+
+
+    *
+        R1(config)#router rip
+        R1(config-router)#network 192.168.1.0
+            -> 연결이 되어 있음에도 선언한다
+            -> 이 선언을 통해 자신의 네트워크를 알린다.
+
+        R1(config-router)#network 10.0.0.0
+
+
+
+        R1(config-router)#show ip route 에서
+
+            172.16.0.0/16 [120/1] via ...
+             -> 120 : AD
+             -> 1: Metric
+
+
+
+
+
+    *
+
+
+
+
