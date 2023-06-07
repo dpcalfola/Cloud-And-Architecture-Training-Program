@@ -1,0 +1,121 @@
+< OSPF >
+
+    == Open Shortest Path First
+
+    메인 포인트!!
+            주기적인 간격을 가지고 Kink-State Refresh를 보내서 링크의 상태를 확인한다.
+
+    장점:
+
+        * AREA 를 나누어 관리할 수 있다
+            - 망 분리 가능
+            - Area 를 나눌시에는 기준이 필요하다
+
+                - Backbone Area
+                    - 다른 Area와 연결되는 Area
+                    - Area 0
+                    - 다른 Area와 연결되는 Area
+
+                - OSPF Area
+                    - Transit Area
+                        - 다른 Area와 연결되는 Area
+                        - (유사) Backbone Area
+                    - Regular Area
+                        - 다른 Area와 연결되지 않는 Area
+                        - 각각의 단일 Area
+
+
+            - AS: Autonomous System
+
+
+
+
+
+
+
+
+    Keyword
+        - ABR(Area Border Router)
+        - ASBR(Autonomous System Border Router)
+
+        - AS (Autonomous System)
+            -> Autonomus: 자주적인 자율적인
+
+
+
+    OSPF Neighbor 조건
+        중요**1. 같은 Area에 속해야 한다
+        중요**2. Hello interval, Dead interval이 같아야 한다 (Network type 은 상관없음)
+        3. Plain Text, MD5 암호화가 같아야 한다
+        4. Stub Area 라우터들은 Stub 설정을 해야한다
+        5. Mtu Size가 동일해야한다 (불일치 시 작은쪽에서 ip ospf mtf-ignore 명령어를 통해 무시할 수 있다)
+
+        각각의 라우터들은 멀티캐스트(224.0.0.5)fmf dldyd
+
+
+
+
+    DR/BDR
+        약어:
+            DR: Designated Router (관리 라우터)
+            BDR: Backup Designated Router
+
+
+    OSPF Netwokr type
+        중요!! (Lan 망)
+            1. Broadcast
+                    - DR. BDR
+                            선출 필요
+                    - Hello interval 10 sec, Dead interval 40 sec
+                    - Neighbor: 자동
+                    - 기본: Ethernet
+            2. Point-to-Point
+                    - DR, BDR
+                            비선출
+                    - Hello interval 10 sec, Dead interval 40 sec
+                    - Neighbor: 자동
+                    - 기본: PPP, HDLC, FRptp(Frame Relay ptp?)
+        덜중요
+            3. NBMA
+            4. Point-to-Multipoint
+            5. Point-to-Multipoint Non-Broadcast
+
+
+Process
+
+    - LSA
+        - 자신의 정보를 전달하는 것
+        - LSA Flooding
+            -> 이후 LSDB에 LSA 정보를 저장한다 (LSA 테이블)
+
+    - LSDB
+        - Link State Database
+        - LSA Flooding
+
+
+    - SPF
+
+    - Tables of OSPF
+        - Neighbor Table
+        - Routing Table
+        - LSA Table (LSDB)
+
+
+
+
+
+* RIP vs OSPF
+    OSPF
+        - 일단 관계형성을 먼저 형성한다
+        - 관계를 주기적으로 싱크로한다 (LSA)
+
+
+    RIP
+        - clear ip route * 명령어는 RIP 연결이 형성되어졌다는 전제 하에 가능한 명령
+        -
+            OSPF 일정 시간 간격으로 LSA를 보내는 것과 달리
+            RIP은 주기적으로 보내는 것이 아니라
+            변경사항이 있을 때만 보낸다
+
+
+* 상태정보 ?
