@@ -1,0 +1,13 @@
+Task4.
+    2 Default gateway in individual PC
+        - Success ping at own geteway
+        - unreachable ping at other gateway
+
+
+
+Task 5.
+
+    step 2
+        - R1(config)# router ospf 1
+        - R1(config-router)# network {network address} {wildcard mask} area {area number}
+        -

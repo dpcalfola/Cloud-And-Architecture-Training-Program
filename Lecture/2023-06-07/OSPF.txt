@@ -3,7 +3,7 @@
     == Open Shortest Path First
 
     메인 포인트!!
-            주기적인 간격을 가지고 Kink-State Refresh를 보내서 링크의 상태를 확인한다.
+            주기적인 간격을 가지고 Link-State Refresh를 보내서 링크의 상태를 확인한다.
 
     장점:
 
@@ -42,6 +42,45 @@
             -> Autonomus: 자주적인 자율적인
 
 
+        - Subnet Mask vs Wildcard Mask
+            - Subnet Mask
+                - net-id / h-id
+
+
+            - Wildcard Mask************
+                - check / ignore (bit)
+                    - 0: check,
+                    - 1: ignore
+
+                - wildcard mask 가 0.0.0.0 일 경우 모든 비트를 체크한다
+
+                - Command:
+                    - R1(config)# router ospf 1
+                            -> process-id 가 무엇을 의미하는지?
+                    - R1(config-router)# network {net-id} {wildcard-mask} area {area-id}
+
+                - example)
+                    - 1.1
+                        R1(config-router)# network 172.16.1.16 0.0.0.15 area 0
+                            -> 0.0.0.(0b00001111 == 15)
+                            -> 대표주소 172.16.1.16/28 이므로 28비트 를 체크하고 4비트는 값에 관계없이 영역을 나눈다
+
+                    - 1.2
+                        R1(config-router)# network 172.16.1.17 0.0.0.0 area 0
+
+                - 확인 명령어
+                    - show ip route
+                    - show ip ospf interface
+                    - show frame-relay map
+
+
+            (참고) Subnet Mask 와 다르게 Wildcard mask 11100101 같은 표현도 가능하다
+                -> 단순히 서브넷 마스크를 뒤집에서 표현한다고 생각하면 안됨
+
+
+           - Subnet <-> Wildcard
+                10.0.0.0 255.0.0.0 <-> 10.0.0.0 0.255.255.255.0
+
 
     OSPF Neighbor 조건
         중요**1. 같은 Area에 속해야 한다
@@ -50,7 +89,7 @@
         4. Stub Area 라우터들은 Stub 설정을 해야한다
         5. Mtu Size가 동일해야한다 (불일치 시 작은쪽에서 ip ospf mtf-ignore 명령어를 통해 무시할 수 있다)
 
-        각각의 라우터들은 멀티캐스트(224.0.0.5)fmf dldyd
+        각각의 라우터들은 멀티캐스트(224.0.0.5)를 사용한쟈
 
 
 
@@ -61,8 +100,8 @@
             BDR: Backup Designated Router
 
 
-    OSPF Netwokr type
-        중요!! (Lan 망)
+    OSPF Network type
+        중요!! (LAN)
             1. Broadcast
                     - DR. BDR
                             선출 필요
@@ -75,10 +114,26 @@
                     - Hello interval 10 sec, Dead interval 40 sec
                     - Neighbor: 자동
                     - 기본: PPP, HDLC, FRptp(Frame Relay ptp?)
-        덜중요
-            3. NBMA
+        덜중요 (WAN)
+            3. NBMA (Non-Broadcast Multi-Access)
+                    - 기본: Frame Relay
+                    - DR, BDR: 선출 필요
+                    - Hello interval 30 sec, Dead interval 120 sec
+                    - Neighbor: 수동
+
             4. Point-to-Multipoint
             5. Point-to-Multipoint Non-Broadcast
+
+
+    Neighbor State
+        - Full state 가 형성되지 않은면 SPA 알고리즘이 동작하지 않는다.
+
+
+
+
+
+
+
 
 
 Process
@@ -111,7 +166,7 @@ Process
 
 
     RIP
-        - clear ip route * 명령어는 RIP 연결이 형성되어졌다는 전제 하에 가능한 명령
+        - clear ip route * => 명령어는 RIP 연결이 형성되어졌다는 전제 하에 가능한 명령
         -
             OSPF 일정 시간 간격으로 LSA를 보내는 것과 달리
             RIP은 주기적으로 보내는 것이 아니라
@@ -119,3 +174,256 @@ Process
 
 
 * 상태정보 ?
+
+
+
+
+
+
+< Frame Relay >
+
+    * 예제:
+        물리적으로 Star Topology 를 가진 네트워크를 논리적으로 Line Topology 로 구현하기
+
+            - Frame Relay
+                - DLCI 304=403
+                - DLCI 314=413
+
+            - 논리적 구성
+                - 16.16.34.0/24, S1/0.34 Multipoint
+                - 16.16.43.0/24, S1/0.43 Point-to-Point
+
+
+
+    - DLCI:
+        - Data Link Connection Identifier
+        - DLCI 로 연결된 회선을 PVC 라고 부른다
+
+    - multipoint 가 기본이며 point-to-point 는 명시적으로 설정해야한다
+
+
+
+
+내가 그린 그림과 실제 그림을 다를 수 있다.
+    -> 물리 그림과 논리 그림이 다른 상황을 구현하라
+    -> 물릭 그림과 논리 그림이 다르게 보는 연습
+
+
+
+
+
+
+
+
+
+
+
+
+< Frame Relay - 실습 >
+    예제: 물리적으로 Star Topology 를 가진 네트워크를 논리적으로 Line Topology 로 구현하기
+
+
+
+    * FRSW 설정
+       더블클릭 -> GUI
+
+            1.
+                Source: port 1 DLCI 102
+                Destination: port 2 DLCI 201
+
+            2.
+                Source: port 2 DLCI 203
+                Destination: port 3 DLCI 302
+
+
+
+                9
+    * R3 설정
+        1. Pc -> loopback 설정
+        2. interface serial 1/0
+           -> encapsulation frame-relay
+           -> no frame-relay inverse-arp
+           -> frame-relay map ip 172.16.2.3 302 broadcast
+           -> no shutdown
+       3. 확인절차
+            -> show frame-relay map (DLCI, active)
+            -> show ip interface brieef
+            -> show ip route
+
+
+    * R2 설정
+        1. PC -> loopback 설정
+        2. inteface serial 1/0
+            -> encapsulation frame-relay
+            -> no frame-relay inverse-arp
+            -> no shutdown
+            -> exit
+        3.
+            3.1 DLCI 0.12 설정
+                R2(config)# interface serial 1/0.12 ?
+                R2(config)# interface serial 1/0.12 multipoint
+                R2(config-subif)# ip address 172.16.1.2 255.255.255.0
+                R2(config-subif)# frame-relay map ip 172.16.1.1 201 broadcast
+                R2(config-subif)# exit
+            3.2 DLCI 0.23 설정
+                R2(config)# interface serial 1/0.23 ?
+                R2(config)# interface serial 1/0.23 point-to-point
+                R2(config-subif)# ip address 172.16.2.2 255.255.255.0
+                R2(config-subif)# frame-relay inteface-dlci 203
+                R2(config-fr-dlci)# end
+
+        4. 확인절차 상동
+
+
+    * R1 설정
+        1. PC: loopback 설정
+            - R1(config)# interface loopback 0
+            - R1(config-if)# ip address 192.168.10.1 255.255.255.0
+            - R1(config-if)# no shutdown
+            - exit
+
+        2. interface serial 1/0
+            - R1(config)# interface serial 1/0
+            - R1(config-if)# encapsulation frame-relay
+            - R1(config-if)# no frame-relay inverse-arp
+            - R1(config-if)# frame-relay map ip172.16.1.2 102 broadcast
+            - R1(config-if)# no shutdown
+
+        3. 확인절차
+
+
+
+    * 최종 확인
+        - R1# show frame-relay map
+        - R1# show ip interface brief
+        - R1# show ip route
+        - R1# ping
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    no frame-relay inverse-arp
+        -> inverse-arp 를 끈다
+        -> 자동으로 DLCI 를 매핑하는 것을 끈다
+
+    2. 수동으로 DLCI 매핑하기
+        -> frame-relay map ip 172.16.1.2 102 broadcast
+            -> 1.2 로 갈때 102 를 사용한다
+
+
+
+
+
+
+
+< 실습 2 >
+
+
+
+    FRSW:
+        - Source: port 3 DLCI 304
+        - Destination: port 4 DLCI 403
+
+        - Source: port 3 DLCI 314
+        - Destination: port 4 DLCI 413
+
+
+    R3 >
+        - interface loopback 0
+            (생략)
+
+        - interface serial 1/0
+            -> encapsulation frame-relay
+            -> no frame-relay inverse-arp
+            -> no shutdown
+            -> exit
+
+        - interface serial 1/0.34 multipoint
+            -> ip address 16.16.34.2 255.255.255.0
+            -> frame-relay map ip 16.16.34.1 304 broadcast (틀림)
+            -> frame-relay map ip 16.16.34.3 304 broadcast (34.3으로 갈깨 304를 사용한다)
+
+        - interface serial 1/0.42 point-to-point
+            -> ip address 16.16.43.2 255.255.255.0
+            -> frame-relay interface-dlci 314
+
+
+    R4 >
+        - interface loopback 0
+            (생략)
+
+        - interface serial 1/0
+            -> encapsulation frame-relay
+            -> no frame-relay inverse-arp
+            -> no shutdown
+            -> exit
+
+        - interface serial 1/0.34 multipoint
+            -> ip address 16.16.34.3 255.255.255.0
+            -> frame-relay map ip 16.16.34.1 403 broadcast (틀림)
+            -> frame-relay map ip 16.16.34.2 403 broadcast (틀림) (34.2로 갈때 403을 사용한다)
+
+
+        - interface serial 1/0.42(43인데 42로 들어감) point-to-point
+            -> ip address 16.16.43.3 255.255.255.0
+            -> frame-relay interface-dlci 413
+
+
+
+
+    R1, R2, R3 >
+
+        - ip 할당
+            - loopback:
+            - FastrEthernet:
+
+        - OSPF 설정
+            - ospf 진입
+                R1(config)# router ospf 1
+
+            - loopback network
+                loopback ip address: 16.16.1.1
+                R1(config-router)# network {net-id} {wildcard-mask} area {area-id}
+                R1(config-router)# network 16.16.1.0 0.0.0.255 area 0
+                    -> 와일드 카드를 범위로 지정하는 방식 사용
+
+            - FastEthernet network
+                FastEthernet ip address: 16.16.123.1
+                R1(config-router)# network {net-id} {wildcard-mask} area {area-id}
+                R1(config-router)# network 16.16.123.1 0.0.0.0 area 0
+                    -> 와일드카드를 특정 주소 1개만 지정하는 방식 사용
+
+
+
+
+
+    R3, R4 사이의 OSPF 설정 >
+
+        - ospf loopback 설정을 R1, R2, R3 과 동일하게 한다
+
+        1. ospf network 설정
+            - R3(config)# router ospf 1
+            - R3(config-router)# network 16.16.34.0 0.0.0.255 area 0
+            - R3(config-router)# network 16.16.43.0 0.0.0.255 area 0
+
+        - R3(config)# interface serial 1/0.34
+        - R3(config-if)# ip ospf hello-interval 10
+        - R3(config-if)# ip ospf dead-interval 40
+        - R3(config-if)# exit
+
+        - R3(config)# interface serial 1/0.42
+        - R3(config-if)# ip ospf hello-interval 10
+        - R3(config-if)# ip ospf dead-interval 40
+        - R3(config-if)# exit
+

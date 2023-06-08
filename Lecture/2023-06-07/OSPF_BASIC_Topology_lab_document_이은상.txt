@@ -1,0 +1,275 @@
+Lab Document Information
+
+    시나리오: OSPF_BASIC_Topology.jpg
+    작성자: 이은상
+    작성일: 2023.06.07
+    최종 수정일: 2023.06.07
+
+===============================================================================
+
+
+
+1. 목표:
+    1.1 Dynamic Routing Protocol 중 하나인 OSPF Protocol 을 사용하여 네트워크를 구성한다
+    1.2 Frame Relay 를 사용하여 하나의 물리적인 회선을 논리적 다중 회선으로 구현한다
+    1.3 물리적 topology 와 논리적 topology
+        1.3.1 물리적/논리적 구성도가 다를 수 있음을 인지
+        1.3.2 물리적/논리적 구성을 다르게 그려보는 연습
+
+
+
+
+2. 약어 정리
+    2.1 AS: Autonomous System (Autonomous: 자주적인, 자율적인)
+
+    2.2 OSPF
+        - OSPF:Open Shortest Path First
+        - LSA: Link State Advertisement
+        - ABR: Area Border Router
+        - ASBR: Autonomous System Boundary Router
+
+    2.3 Frame Relay
+        - DLCI: Data Link Connection Identifier
+
+
+
+3. 접근 순서(plan):
+    3.1 R3와 R4 사이의 Frame Relay 를 먼저 구성
+            - (이유) Frame Relay 실습은 처음이기 때문에 최우선 순위로 두었음.
+
+    3.2 나머지 IP address 를 할당
+
+    3.3 OSPF 를 이용하여 Routing
+        3.3.1 R3, R4 이외의 모든 Router 에서 OSPF 를 구성하고 확인한다
+        3.3.2 R3, R4 에서 OSPF 를 구성하고 확인한다
+        3.3.3 모든 구간에서 통신 가능 여부를 확인한다
+
+
+
+
+
+===============================================================================
+4. 작업과정 및 커맨드
+===============================================================================
+
+   4.0 상태 확인 커맨드
+        4.0.1 # show ip interface brief
+        4.0.2 # show ip route
+        4.0.3 # show ip ospf neighbor
+        4.0.4 # show frame-relay map
+
+
+
+   4.1 FRSW 설정
+        4.1.1 GUI 환경에서 DLCI 정보 입력
+        4.1.2 Value
+             - Source: port 3 DLCI 304
+               Destination: port 4 DLCI 403
+
+             - Source: port 3 DLCI 314
+               Destination: port 4 DLCI 413
+
+
+   4.2 R3 Frame Relay
+
+        4.2.1
+            interface serial 1/0
+                - R3(config)# interface serial 1/0
+                - R3(config-if)# encapsulation frame-relay
+                - R3(config-if)# no frame-relay inverse-arp
+                    -> 수동으로 IP address 와 DLCI 를 매핑해야 하기 때문에 inverse-arp 기능을 제거한다
+
+                - R3(config-if)# no shutdown
+                - R3(config-if)# exit
+
+
+
+        4.2.2
+            interface serial 1/0.34
+                - R3(config)# interface serial 1/0.34 multipoint
+                - R3(config-if)# ip address 16.16.34.2 255.255.255.0
+                    -> 1/0.34 에 ip address 를 할당
+
+                - R3(config-if)# frame-relay map ip 16.16.34.3 304 broadcast
+                    -> 16.16.34.3 의 경로는 DLCI 304 를 통해 간다는 것을 명시
+
+
+        4.2.3
+            interface serial 1/0.43
+                - R3(config)# interface serial 1/0.43 point-to-point
+                - R3(config-if)# ip address 16.16.43.2 255.255.255.0
+                - R3(config-if)# frame-relay interface-dlci 314
+                    -> point-to-point 이기 때문에 ip mapping 없이 DLCI 명시만으로도 가능
+
+
+
+
+   4.3 R4 Frame Relay
+
+        4.3.1
+            interface serial 1/0
+                - R4(config)# interface serial 1/0
+                - R4(config-if)# encapsulation frame-relay
+                - R4(config-if)# no frame-relay inverse-arp
+
+                - R4(config-if)# no shutdown
+                - R4(config-if)# exit
+
+
+        4.3.2
+            interface serial 1/0.34
+                - R4(config)# interface serial 1/0.34 multipoint
+                - R4(config-if)# ip address 16.16.34.3 255.255.255.0
+
+                - R4(config-if)# frame-relay map ip 16.16.34.2 403 broadcast
+
+
+        4.3.3
+            interface serial 1/0.43
+                - R4(config)# interface serial 1/0.43 point-to-point
+                - R4(config-if)# ip address 16.16.43.3 255.255.255.0
+                - R4(config-if)# frame-relay interface-dlci 413
+
+
+
+   4.4 IP address 할당
+
+        4.4.1
+            R1, R2, R3, R4 에 Loopback interface 를 생성하고 IP address 할당
+                - R1(config)# interface loopback 0
+                - R1(config-if)# ip address 16.16.1.1 255.255.255.0
+
+                - Loopback ip table
+                    R1 loopback: 16.16.1.1 255.255.255.0
+                    R2 loopback: 16.16.2.2 255.255.255.0
+                    R3 loopback: 16.16.2.2 255.255.255.0
+                    R4 loopback: 16.16.2.2 255.255.255.0
+
+
+        4.4.2
+            R1, R2, R3 FastEthernet interface 에 IP address 할당
+                - R1(config)# interface FastEthernet 0/0
+                - R1(config-if)# ip address 16.16.123.1 255.255.255.0
+
+                - FastEthernet ip table
+                    R1 FastEthernet: 16.16.123.1 255.255.255.0
+                    R2 FastEthernet: 16.16.123.2 255.255.255.0
+                    R3 FastEthernet: 16.16.123.3 255.255.255.0
+
+
+
+
+   4.5 OSPF 설정 - R1, R2, R3 (R1 기준 설정만 기록)
+
+        4.5.1
+            ospf 진입
+                - R1(config)# router ospf 1
+                    * (1: process id)
+                - 진입 상태:
+                    - R1(config-router)#
+
+        4.5.2
+            network 설정 양식
+                - R1(config-router)# network {net-id} {wildcard-mask} area {area-id}
+
+
+        4.5.3
+            network 설정 커맨드
+                - loopback network
+                    - R1(config-router)# network 16.16.1.0 0.0.0.255 area 0
+                        -> (wildcard-mask 를 범위로 지정하는 방식 사용)
+
+                - FastEthernet network
+                    - R1(config-router)# network 16.16.123.1 0.0.0.0 area 0
+                        -> (wildcard-mask 로 특정 주소 1개만 지정하는 방식 사용)
+
+
+
+
+
+
+   4.6 OSPF 설정 - R3 와 R4 사이 (R3 기준 설정만 기록)
+
+        4.6.1
+            ospf loopback 설정
+                - R1, R2, R3 과 동일
+
+
+
+        4.6.2.
+            Frame Relay 의 OSPF 설정
+
+                4.6.2.1
+                    ospf 명시
+                        - R3(config)# router ospf 1
+                        - R3(config-router)# network 16.16.34.0 0.0.0.255 area 0
+                        - R3(config-router)# network 16.16.43.0 0.0.0.255 area 0
+
+
+                    * ospf 명시 다른 방법
+                        -> 16.16.0.0 로 묶어서 처리하고
+                        -> wildcard-mask 범위를 3,4 옥텟에 지정
+
+                        - R3(config)# router ospf 1
+                        - R3(config-router)# network 16.16.0.0 0.0.255.255 area 0
+
+
+
+                4.6.2.2
+                    interval 통일 작업
+                        -> Frame Relay multipoint interface 는 default 로 hello-interval 30, dead-interval 120 로 설정되어 있다
+                        -> Broadcast interface 는 default 로 hello-interval 10, dead-interval 40 로 설정되어 있다
+                        -> 보다 낮은값인 10, 40 으로 통일시켜준다
+
+                        - R3(config)# interface serial 1/0.34
+                        - R3(config-if)# ip ospf hello-interval 10
+                        - R3(config-if)# ip ospf dead-interval 40
+                        - R3(config-if)# exit
+
+                        - R3(config)# interface serial 1/0.43
+                        - R3(config-if)# ip ospf hello-interval 10
+                        - R3(config-if)# ip ospf dead-interval 40
+                        - R3(config-if)# exit
+
+
+================================================================================
+
+
+5. 결과 확인(at 4.0) 및 모든 구간에서의 ping test
+
+
+
+
+
+
+
+
+================================================================================
+
+
+
+6. 하고 싶었으나 작성하지 못한 부분
+
+    6.1 결과값 기록
+        -> 교육기관 컴퓨터에서 작업했고, 작업한 파일을 집으로 가져오지 못했음;;;
+
+
+    6.2 전체 ip table 작성
+
+
+    6.3 Trouble Shooting 내용 정리 (간단히 요약함)
+        6.3.1
+            R3-R4 사이 ospf 설정 과정에서 ospf 명시(at 4.6.2.1) 없이 interval 통일 작업
+        6.3.2
+            frame-relay map ip 명령어의 몰이해로 인한 잘못된 주소 입력 (at 4.2.2, 4.2.3)
+                R3(config-if)# frame-relay map ip 16.16.34.3 304 broadcast
+                    -> 16.16.34.3 의 경로는 DLCI 304 로 던진다는 의미
+                    -> (오류) broadcast 라는 키워드로 인해 양방향에 map ip를 16.16.34.1 로 설정함
+
+
+
+
+
+
+
+이상 끝.
