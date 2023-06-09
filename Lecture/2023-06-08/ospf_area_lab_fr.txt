@@ -1,0 +1,3 @@
+1. r2, r3, r4 에서의
+    interface 1/0 Frame Relay 설정
+

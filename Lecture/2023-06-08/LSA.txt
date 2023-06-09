@@ -1,0 +1,42 @@
+Default
+    - default gateway
+    - default route
+
+
+AD:
+    - Administrative Distance
+    - Routing priority
+
+    1Directly Connected (D) - Priority: 0
+    Static Routes (S) - Priority: 1
+    Enhanced Interior Gateway Routing Protocol (EIGRP) - Priority: 90
+    OSPF Inter-Area (O IA) - Priority: 110
+    OSPF Intra-Area (O) - Priority: 110
+    RIP (R) - Priority: 120
+    External BGP (B E) - Priority: 20
+    Internal BGP (B I) - Priority: 200
+
+
+
+* OSPF
+
+
+    LSA:
+        - Link State Advertisement
+        - OSPF routing protocol uses LSA to advertise routing information to other routers within the same area
+
+        - command
+            - show ip ospf database
+
+    ABR:
+        - Area Border Router
+        - A router that connects one or more areas to the backbone area in an OSPF network
+
+    ASBR:
+        - Autonomous System Boundary Router
+        - A router that connects an OSPF area to an external network
+
+
+
+
+        available

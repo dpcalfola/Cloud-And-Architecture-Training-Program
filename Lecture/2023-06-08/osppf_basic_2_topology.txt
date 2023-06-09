@@ -1,0 +1,33 @@
+interface serial 0
+# ip ospf network point-to-multipoint
+
+    - point-to-multipoint : 물리적으로 구현은 불가능하고 논리적으로만 구현
+
+
+* show ip ospf interface serial 1/0.34 결과 (multipoint)
+    - Default
+        - Hello interval 30
+        - Dead interval 120
+
+
+
+
+
+
+
+* show ip interface brief
+* show frame-relay map
+* show ip ospf neighbor
+* show ip ospf interface serial 1/0
+
+
+
+
+<OSPF Network Type>
+1. IP address setup
+2. OSPF setup
+3. OSPF 이슈해결(전체 통신 가능)
+4. R1 s1/0 Network Type point-to-multipoint
+5. R2 f0/0 Network Type non-broadcast
+6. R3 s1/0 Network Type point-to-point
+7. R4 s1/0 Network Type point-to-Multipoint
