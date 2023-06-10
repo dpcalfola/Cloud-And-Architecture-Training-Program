@@ -1,0 +1,33 @@
+ospf network
+
+on R3
+
+    network 21.21.0.0 0.0.255.255 area 0 으로 주었음
+
+
+
+
+
+Command>
+
+    show ip ospf neighbor
+
+
+
+
+    * R3에 Loopback 3 를 재분배하여 광고
+        (config)# router ospf 1
+        (config-router)# redistribute connected subnets
+        (config-router)# redistribute {연결방식} subnets
+
+
+
+
+
+    traceroute {ip address}
+
+
+
+
+    show ip ospf neighbor
+

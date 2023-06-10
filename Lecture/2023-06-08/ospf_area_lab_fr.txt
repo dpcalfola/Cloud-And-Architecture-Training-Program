@@ -1,3 +1,43 @@
 1. r2, r3, r4 에서의
     interface 1/0 Frame Relay 설정
 
+
+
+
+
+** 주의:
+
+    R1: S1/0  <-> R2: S1/0.12 multipoint
+
+
+
+
+** 2023-06-09
+    추가 내용
+
+
+
+
+
+
+    순서
+
+     r1
+        루프백
+        인캡술 FR
+        no inverserarp
+
+        fram-relay map ip
+
+
+
+    r2.
+        루프백
+        인캡술 FR
+        no inverserarp
+
+        fram-relay map
+
+
+       seraal 1/0 FR
+
