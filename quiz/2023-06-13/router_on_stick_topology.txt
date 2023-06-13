@@ -1,0 +1,121 @@
+cable 주의사항
+
+    - 같은 장비끼리는 cross cable
+    - 다른 장비끼리는 straight cabl
+
+
+
+시나리오 1.
+    이미지대로 구성
+
+
+    1.1. PC setting
+        set ip, subnet
+        set gateway as Router1's sub-interface ip
+
+    1.2 Switch setting
+
+        - vlan config (각각 pc 1대당 vlan 1개씩)
+            #sw1(config)# vlan {vlan-id}
+            #sw1(config-vlan)# name {vlan-name}
+            #sw1(config-vlan)# exit
+
+        - Access port setting
+            #sw1(config)# interface fastethernet 0/1
+            #sw1(config-if)# switchport mode access
+            #sw1(config-if)# switchport access vlan {vlan-id}
+            #sw1(config-if)# exit
+
+        - Trunk port setting
+            #sw1(config)# interface GigabitEthernet 0/1 (router1 과 연결된 포트)
+            #sw1(config-if)# switchport mode trunk
+
+            (#sw1(config-if)# switchport trunk allowed vlan {vlan-id}) -> 필요시
+                -> trunk mode default 는 all vlan 이 허용되어 있음
+
+            #sw1(config-if)# exit
+
+        - Vlan 확인
+            #sw1# show vlan brief
+
+
+
+    1.3 Router1 setting
+
+        - interface up
+            #Router1(config)# interface GigabitEthernet 0/0
+            #Router1(config-if)# no shutdown
+            #Router1(config-if)# exit
+
+        - sub interface setting
+            #Router1(config)# interface GigabitEthernet 0/0.10
+            #Router1(config-subif)# encapsulation dot1Q 10
+            #Router1(config-subif)# ip address {PC1's gateway ip} {subnet}
+
+
+
+
+
+
+
+
+
+시나리오 2.
+    Router1  대신 Multi Layer Switch 사용
+
+
+
+        2.1
+            router1 설정 전까지는 시나리오 1과 동일하게 가져감
+            (PC, switch - vlan, switch - trunk)
+
+        2.2
+            multi layer switch 에서 각각의 vlan 에 SVI 로 라우팅한다
+
+                2.2.1
+                    L3 switching activate
+                        #mu_la_sw_1(config)# ip routing
+                        #mu_la_sw_1(config)# exit
+
+                2.2.2
+                    Create  vlan
+                        #mu_la_sw_1(config)# vlan {vlan-id}
+                        #mu_la_sw_1(config-vlan)# exit
+
+
+                2.2.3
+                    Create SVI
+                        #mu_la_sw_1(config)# interface vlan {vlan-id}
+                        #mu_la_sw_1(config-if)# ip address {PC1's gateway ip} {subnet}
+                        #mu_la_sw_1(config-if)# no shutdown
+
+
+        2.3
+            FastEthernet 0/3 port 를 trunk port 로 설정
+                #mu_la_sw_1(config)# interface FastEthernet 0/3
+
+                #mu_la_sw_1(config-if)# switchport trunk encapsulation dot1q
+                #mu_la_sw_1(config-if)# switchport mode trunk
+                #mu_la_sw_1(config-if)# no shutdown
+                #mu_la_sw_1(config-if)# exit
+
+
+
+시나리오 3.
+    switch 를 제거하고 Multi Layer Switch 만 사용하여 구성
+
+    3.1
+        multi layer switch 에서 각각의 interface 에 no switch 명령어로 ip address 부여한다
+
+        #mu_la_sw_2(config)# interface FastEthernet 0/1
+        #mu_la_sw_2(config-if)# no switch
+        #mu_la_sw_2(config-if)# ip address {PC1's gateway ip} {subnet}
+        #mu_la_sw_2(config-if)# no shutdown
+
+
+        #mu_la_sw_2(config-if)# interface FastEthernet 0/2
+        #mu_la_sw_2(config-if)# no switch
+        #mu_la_sw_2(config-if)# ip address {PC2's gateway ip} {subnet}
+        #mu_la_sw_2(config-if)# no shutdown
+
+

@@ -1,0 +1,40 @@
+access mode:
+    - switch 에서 외부로 나가는 순간 tag 뗀다
+    - switch 에서 내부로 들어오는 순간 tag 붙인다
+
+trunk mode
+    - tag를 떼지 않는다
+
+
+
+
+
+
+
+* Trunk mode:
+    - 자신이 속한 vlan에 대해서는 tag를 떼지 않는다
+    - 자신이 속한 vlan에 대해서만 tag를 붙인다
+    - 자신이 속한 vlan이 아닐경우 tag를 떼고 받는다
+
+
+
+* VTP (Vlan Trunking Protocol)
+    - vlan을 자동으로 배포하는 프로토콜
+    - 보안이 취약할 수 있음
+
+
+
+
+* f0/0.10
+    1. gateway
+    2. Encapsulation
+
+
+
+* Multi layer switch
+    -> L3 switch
+    -> 공유기와 같은 개념이 될 것
+
+
+
+* SVI (Switch Virtual Interface)
