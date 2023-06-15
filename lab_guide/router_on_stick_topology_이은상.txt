@@ -2,7 +2,7 @@ Lab Guide Document Information
 
     시나리오: router_on_stick_topology
     작성자: 이은상
-    작성일: 2023.06.13
+    작성일: 2023.06.14
     최종 수정일: 2023.06.14
 
 ===============================================================================
@@ -109,7 +109,6 @@ cable 주의사항
                     Create SVI
                         #mu_la_sw_1(config)# interface vlan {vlan-id}
                         #mu_la_sw_1(config-if)# ip address {PC1's gateway ip} {subnet}
-                        #mu_la_sw_1(config-if)# no shutdown
 
 
         2.3
