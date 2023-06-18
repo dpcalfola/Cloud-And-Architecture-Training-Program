@@ -12,7 +12,7 @@ interface serial 0
 
 
 
-
+?
 
 
 * show ip interface brief

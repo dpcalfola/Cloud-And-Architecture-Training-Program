@@ -38,3 +38,21 @@ trunk mode
 
 
 * SVI (Switch Virtual Interface)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* ospf
+
+    -

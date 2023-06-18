@@ -1,0 +1,6 @@
+ssl_tls_layer.png
+    https://www.lesstif.com/ws/ssl-tls-https-43843962.html
+    https://www.lesstif.com/ws/
+        Web Service Hardening
+
+

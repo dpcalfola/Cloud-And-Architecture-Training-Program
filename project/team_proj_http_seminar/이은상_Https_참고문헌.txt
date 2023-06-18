@@ -1,0 +1,25 @@
+HTTPS 참고문헌
+
+    ChatGPT
+
+    (유투브) 얄팍한 코딩사전 - HTTPS가 뭐고 왜 쓰나요?
+        https://youtu.be/H6lpFRpyl14
+
+    (유투브) 생활 코딩 암호학1
+        https://youtube.com/playlist?list=PLuHgQVnccGMD-9lk4xmb6EG1XK1OmwC3u
+
+    Web Service Hardening
+        https://www.lesstif.com/ws/
+
+    제이온 - [네트워크] TLS & SSL Handshake
+        https://steady-coding.tistory.com/512
+
+
+    ByteByteGo Newsletter - How Does HTTPS Work? (Episode-6)
+        https://blog.bytebytego.com/p/how-does-https-work-episode-6
+
+
+
+Diagram drawing tool
+
+    https://www.drawio.com/
