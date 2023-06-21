@@ -1,0 +1,17 @@
+Extended ACL, using name tag, How to change priority ?
+ChatGPT
+To change the priority of an extended ACL using a name tag, you need to modify the ACL entry within the ACL configuration. Here's a general process to follow:
+
+Access the device or network equipment where the extended ACL is configured. This could be a router, firewall, or similar network device.
+
+Enter the device's configuration mode. The command to enter the configuration mode varies depending on the device and its operating system. For example, on Cisco devices running IOS, you would typically use the command configure terminal.
+
+Locate the extended ACL that you want to modify. The ACL will have a name tag associated with it. The configuration for extended ACLs typically begins with the command access-list <acl-name> extended.
+
+Identify the specific entry within the ACL that you want to change the priority for. Each ACL entry has a sequence number assigned to it.
+
+Change the priority by modifying the sequence number of the ACL entry. To do this, you can either delete and re-add the entry with a new sequence number or modify the existing entry. The specific commands to do this depend on the device and its operating system. For example, on Cisco devices running IOS, you can use the commands no access-list <acl-name> extended <sequence-number> to delete an existing entry and access-list <acl-name> extended <new-sequence-number> <entry-command> to add a new entry with the desired sequence number.
+
+Review and save the changes. Once you have modified the ACL entry, review the entire ACL configuration to ensure it reflects the desired changes. Use the appropriate command to save the configuration changes. For example, on Cisco devices running IOS, you would typically use the command write memory or copy running-config startup-config to save the configuration.
+
+Please note that the specific commands and procedures can vary depending on the network device and its operating system. It's important to consult the device's documentation or consult with the vendor or network administrator familiar with the device to ensure the correct steps are followed.

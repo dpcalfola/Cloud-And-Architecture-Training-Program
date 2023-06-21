@@ -35,10 +35,27 @@ ACL ( Access Control List )
 
 
 
+    정책은 인터페이스 1개에는 1개밖에 적용 시킬 수 없다
 
 
 
 
 
-    Cisco ACL command
 
+    확장형 ACL 에 네임 택을 붙이면 설정의 우선순위를 변경할 수 있음
+
+
+
+
+
+    CISCO 장비는
+        자신이 가진 정책에 자신은 포함시키지 않는다.
+
+
+
+
+
+
+
+    * TFTP 로 running-config 저장하는 명령어
+        copy start-config tftp
