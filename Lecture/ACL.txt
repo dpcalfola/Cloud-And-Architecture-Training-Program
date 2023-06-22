@@ -59,3 +59,34 @@ ACL ( Access Control List )
 
     * TFTP 로 running-config 저장하는 명령어
         copy start-config tftp
+
+
+
+
+
+
+
+
+
+* Extended ACL
+
+    * access-list 생성하기
+        Router(config)# access-list 101 deny tcp 출발지-ip wildcard-mask 목적지-ip wildcard-mask eq 포트번호
+        Router(config)# access-list 101 permit ip any any
+
+    * access-list 적용하기
+        적용시킬 interface 에 진입하여 access-group 명령어를 사용한다.
+        Router(config-if)# ip access-group 101 in/out
+
+
+
+
+
+
+* ping
+    !: connect
+    .: disconnect
+    U: unreachable
+
+
+

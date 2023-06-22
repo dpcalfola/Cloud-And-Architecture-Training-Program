@@ -1,0 +1,148 @@
+문제 1,2,3 정리 생략
+
+(
+    no shutdown 확인 철저히 (sh ip int br)
+
+
+    static routing
+        - default route 설정시 default route 외에 지정해야 하는 route 확인 철저히 할것
+
+
+    switch 에서의 vlan 개설
+
+
+    switch 각 인터페이스의 trunk, access mode (access vlan {vlan number})
+        - switch 의 기본 연결은 access mode 이나
+          이는 default vlan 1에 설정되어 있는 인터페이스에 한정이며
+          다른 vlan 에 연결시 interface 가
+                trunk mode 가 아니더라도
+                access mode 임을 명시해주어야 한다
+
+
+    router 의 interface 에서 encapsulation dot1q vlan {vlan number} 설정
+)
+
+
+
+문제4) R4 -> R2 으로 ***치는*** icmp만 차단
+    조건 (R2 F0/1 inbound, Extended ACL 사용)
+
+    R4에 붙어있는 ip 3개
+    R2에 붙어있는 ip 3개
+        => 3*3 총 9개
+    deny 외 나머지 permit 하는 정책
+        => 1개
+        ===> 총 10개의 정책이 필요함
+
+    정책 리스트
+        access-list 101 deny   icmp host 10.4.4.4 host 192.168.10.23
+        access-list 101 deny   icmp 4.4.4.0 0.0.0.255 host 192.168.10.23
+        access-list 101 deny   icmp host 46.46.46.46 host 192.168.10.23
+        access-list 101 deny   icmp host 10.4.4.4 2.2.2.0 0.0.0.255
+        access-list 101 deny   icmp 4.4.4.0 0.0.0.255 2.2.2.0 0.0.0.255
+        access-list 101 deny   icmp host 46.46.46.46 2.2.2.0 0.0.0.255
+        access-list 101 deny   icmp host 46.46.46.46 host 172.16.2.2
+        access-list 101 deny   icmp 4.4.4.0 0.0.0.255 host 172.16.2.2
+        access-list 101 deny   icmp host 10.4.4.4 host 172.16.2.2
+        access-list 101 permit ip any any
+
+    적용
+        R2(config)#interface fastEthernet 0/1
+        R2(config-if)#ip access-group 101 in
+
+
+
+
+
+
+문제5) R2 에 텔넷 접근 가능하도록 설정하기
+
+    R2 setting
+        - username: username fola password cisco12
+
+        - line vty 0 4
+            - login local
+            - transport input telnet
+            - password cisco3 <- ?????
+
+        - enable secret cisco4
+
+
+    - line vty 0 4
+    - transport ?
+    - input ?
+    - transport input telnet
+    - login (password 설정 하라는 에러 메시지)
+    - password cisco
+    - login ?
+
+
+
+    - login local
+        -> Local password checking
+
+    R2(config)#username fola password cisco12
+
+
+
+    running-config 메시지 중에서
+        username fola password 0 cisco12
+        -> 0: 암호화 되지 않은 암호
+        -> 7: 암호화 된 암호
+        -> 5: 암호화 된 암호 (MD5)
+
+
+
+
+문제7) R1에 R3 에서만 텔넷 접근 가능하도록 설정
+    * 조건 {
+        Telnet acl 사용,
+        username/password 사용,
+        텔넷 접속시 show ip route 내용 출력후 접속 종료,
+    }
+
+    1. username 만들기
+        - username fola password cisco1
+
+    2. enable password 만들기
+        - enable secret cisco2
+
+    3. telnet 설정
+        - line vty 0 4
+        - transport input telnet
+        - login local
+            (username/password 를 로컬에서 사용하겠다는 뜻)
+            (login ? 로 확인해볼것)
+
+
+    (틀림) 4. telnet 접근제어 (출발지의 연결된 3가지 ip를 모두 허용해야함)
+        - access-list 1 permit host 192.168.10.32
+        -
+
+        -> 다른 호스트로 접근시 거절 메시지
+            "Connection refused by remote host"
+
+        - line vty 0 4
+        - access-class 1 in
+
+
+    5. telnet 접속시 show ip route 출력 후 종료
+        - line vty 0 4
+        - autocommand show ip route
+
+
+
+
+
+문제8) R6 에서 단축키 지정
+        show running-config,
+        show ip route,
+        show ip interface brief
+
+     - alias exec src show running-config
+     - alias exec sir show ip route
+     - alias exec siib show ip interface brief
+
+
+
+

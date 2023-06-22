@@ -1,0 +1,38 @@
+interface no shutdown 여부
+    - show ip interface brief up 인지?
+    - show running-config shutdown 이라고 적혀있지 않은지
+
+
+
+
+
+
+end device 의 default gateway 와 라우터로 들어가는 ip가 같아야 함
+
+
+
+Switch Vlan
+
+    1) vlan 개설하고
+        인터페이스에 vlan 할당
+
+    2) 물리적 구간이 겹치는 부분에서 trunk 모드 설정할것
+
+    3) 기본은 Access mode 이나
+        새로 작성한 vlan 에 인터페이스를 연결한 경우
+        Access mode 를 반드시 명시해야 함
+
+    4) 논리적 구성도에서 직접 연결 되었더라도
+        물리적 구성도에서 스위치를 거쳐간다면
+        vlan, access mode 설정을 해야 함
+
+
+
+
+Static Routing 과정
+    - default routing 외에 반드시 잡아야 하는 라우팅 위치를 명확하게 확인하지 못함
+    - 라우팅 ip의 범위를 잡아야 하는데 특정 부분만 라우팅
+
+
+
+show ip route 에서 연결 경로 빠진곳 없는지 확인하기

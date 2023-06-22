@@ -5,6 +5,6 @@ def int_to_binary(integer):
 
 
 # Example usage
-number: int = 
+number: int = 10
 binary_number = int_to_binary(number)
 print(binary_number)
