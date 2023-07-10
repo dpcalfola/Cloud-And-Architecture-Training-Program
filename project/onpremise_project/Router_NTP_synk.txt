@@ -1,0 +1,31 @@
+< 전제조건 - Router 에서 외부 인터넷 접속 가능 >
+
+
+1. Router 에 DNS 서버 등록
+R5(config)# ip domain lookup
+R5(config)# ip name-server 8.8.8.8
+
+
+2. DNS 동작 확인
+R5# ping www.google.com
+
+
+3. 시간 동기화 (ntp server: time.windows.com)
+R5(config)# ntp server time.windows.com
+
+4. 타임존을 한국으로 변경
+R5(config)# clock timezone KOR +9
+
+5. 시간 동기화 확인
+R5# show clock
+
+
+
+
+===============================================
+
+한쪽 라우터에서 나머지 라우터로 동기화하기
+
+R1(config)# ntp server <router's ip address>
+R1(config)# clock timezone KOR +9
+
