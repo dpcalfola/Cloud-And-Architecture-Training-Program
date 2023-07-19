@@ -1,0 +1,59 @@
+1. Commit and push on docker hub
+
+    # Make repository on docker hub
+
+    # commit image
+    - docker commit container-name image-name
+
+    # Change image name as docker-hub username/registry-name
+    - docker tag image-name docker-hub-username/registry-name
+
+    # push to docker hub
+    - docker push docker-hub-username/registry-name
+
+
+
+
+
+2. Copy to other machine
+
+    # Compress image
+    - docker save > cp_images image.tar
+
+    # ssh copy to other machine
+    - scp image.tar fola@192.168.58.4:/home/fola
+
+
+    ** at 192.168.58.4/home/fola
+    # Extract image
+    - docker import image.tar copied_image
+
+    # Checkup image which is copied
+    - docker images
+
+
+
+
+
+3. Use registry image
+
+    # Run registry image
+    - docker run -d -p 5000:5000 --restart always --name registry registry
+
+    # Checkup container which is running
+    - docker ps
+    - curl localhost:5000/v2/ ; echo
+
+    # change image name as localhost:5000/registry-name
+    - docker tag image-name localhost:5000/registry-name
+
+    # push to registry
+    - docker push localhost:5000/registry-name
+
+    # delete image
+    - docker rmi localhost:5000/registry-name
+
+    # pull from registry
+    - docker pull localhost:5000/registry-name
+
+       

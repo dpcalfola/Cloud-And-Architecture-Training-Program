@@ -1,0 +1,5 @@
+이미지 실행
+docker run -d -p 33381:80 dpcalfola/dockerfile-ex
+
+주소:
+http://localhost:33381/eunsang.html

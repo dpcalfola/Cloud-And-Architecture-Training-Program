@@ -1,0 +1,224 @@
+1.
+
+
+$ docker run -itd --restart=on-failure:3 --name restart_test ubuntu
+
+$ docker inspect -f "{{.RestartCount}}" 1d8
+0
+
+
+
+
+< 연습문제 >
+
+1.
+    Q:
+        docker run -name cloud1 ubuntu cat /etc/hostname
+
+    A:
+        Command:
+                docker run  --rm --name cloud1 \
+                ubuntu \
+                /bin/bash -c "cat /etc/hostname"
+
+        Result:
+
+
+
+
+2.
+    Q: docker run -name cloud2 ubuntu ping www.google.com -c 3
+
+    A:
+
+    docker run <image> sh -c "command1 ; command2 ; command3"
+
+    docker run --name cloud2 ubuntu \
+    /bin/bash -c \
+    "apt-get update ; \
+    apt-get install iputils-ping -y ; \
+    ping www.google.com -c 3"
+
+
+
+
+
+
+
+
+
+
+3.
+
+    Q: docker run -name cloud3 ubuntu mkdir /clouddata
+
+    A:
+        docker run --rm \
+        --name cloud3 ubuntu \
+        /bin/bash -c \
+        "mkdir /clouddata ; ls"
+
+
+
+
+
+
+
+4.
+    Q: docker run -name cloud3 ubuntu mkdir /clouddata
+
+
+    A:
+        docker run -it --rm \
+        --name cloud4 \
+        ubuntu \
+        /bin/bash -c \
+        "mkdir /clouddata ; ls"
+
+
+
+5.
+
+    Q:
+
+
+    A:
+        (--rm)
+        docker run -it --rm --name cloud5 ubuntu /bin/bash
+
+        docker run -it --name cloud5 ubuntu /bin/bash
+
+
+6.
+
+
+
+
+
+
+=================================================================
+
+0. test container
+docker run -itd --name test_ubuntu ubuntu
+docker run -itd --name test_alpine alpine
+
+
+
+
+
+1.
+docker run \
+--rm \
+--name cloud1 \
+alpine \
+cat /etc/hostname
+
+
+
+
+
+2-1 (잘못된 결과)
+
+docker run \
+--rm \
+--name cloud2 \
+alpine \
+ping 8.8.8.8 | ls
+
+ping 8.8.8.8 명령어 한개만 도커 명령어로 포함되고
+ls 명령어는 호스트에서 실행된다
+
+
+2-2 (목적에 맞는 결과) - ping 이 기본적으로 설치되어 있는 이미지 사용
+
+docker run \
+--rm \
+--name cloud2 \
+alpine \
+ping 8.8.8.8 -c 3
+
+
+2-3 (목적에 맞는 결과) - ping 이 설치되어 있지 않은 이미지 사용
+docker run \
+--rm \
+--name cloud2 \
+ubuntu \
+/bin/bash -c \
+"apt-get update && apt-get install iputils-ping -y && ping 8.8.8.8 -c 3"
+
+
+
+
+
+
+3.
+docker run \
+--rm \
+--name cloud3 \
+ubuntu \
+/bin/bash -c \
+"mkdir /clouddata && ls"
+
+*
+    디렉터리 생성 후 ls 명령어 사용하여
+    디렉터리가 정상적으로 생성되었는지 확인
+
+
+
+
+
+
+4.
+docker run \
+-it \
+--rm \
+--name cloud4 \
+ubuntu \
+/bin/bash -c \
+"mkdir /clouddata && /bin/bash"
+
+*
+    mkdir를 사용하여 디렉토리를 생성하고
+    마지막 명령어로 /bin/bash 를 사용하여
+    디렉터리가 정상적으로 생성되었는지 확인 할 수 있게 작성하였음
+
+
+
+
+
+5.
+docker run \
+-it \
+--name cloud5 \
+alpine \
+/bin/sh
+
+
+docker start cloud5 && docker attach cloud5
+
+
+
+
+
+6.
+docker run \
+--rm \
+-itd \
+--name cloud6 \
+alpine \
+/bin/sh
+
+
+
+
+
+
+
+7.
+docker run \
+--rm \
+-d \
+-p 33080:80 \
+httpd
+
+curl localhost:33080

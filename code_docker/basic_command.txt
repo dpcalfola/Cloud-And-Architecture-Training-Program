@@ -1,0 +1,97 @@
+* docker pull
+
+
+
+* docker create
+    docker create -it --name [container name] [image name]
+    docker create -it -p 8080:80 --name [container name] [image name]
+
+
+
+* docker start
+    docker start [container name]
+
+
+
+* docker attach
+    docker attach [container name]
+
+
+
+* (linux) uname -a
+    커널 확인
+    (커널 공유 여부 확인 가능 - 도커 데스크탑이 아닌 도커 엔진 사용중일때 공유임을 확인 할 수 있다)
+
+
+
+* ctrl + p + q
+    - 컨테이너에서 나오기(컨테이너는 계속 실행중)
+
+
+
+* docker exec
+    docker exec -itd [container name] [command]
+
+
+
+* docker stop
+
+
+
+* docker restart
+
+
+
+*
+docker pause
+docker unpause
+    -> 일시 정지된 컨테이너는 리소스를 소비하지 않는다
+
+
+* (linux) watch -n 1 docker ps -a
+    - 1초마다 docker ps -a 명령어를 실행한다
+
+
+
+*
+docker kill
+    -> 컨테이너를 강제 종료한다
+
+
+
+*
+docker stats
+    -> 컨테이너의 리소스 사용량을 확인한다
+
+    docker stats [container name]
+        - 특정 컨테이너의 리소스 사용량을 확인한다
+
+    docker stats --no-stream
+        - 한번만 확인한다
+
+    docker stats --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}"
+        - 특정 컬럼만 출력한다
+        - Name, CPUPerc, MemUsage, MemPerc, NetIO, BlockIO, PIDs 중 앞의 3개 컬럼만 출력한다
+
+
+
+
+
+* docker top [container name]
+    -> 컨테이너에서 실행중인 프로세스를 확인한다
+
+
+* docker inspect [container name]
+    -> 컨테이너의 상세 정보를 확인한다
+
+
+
+* 커맨드 응용
+    docker ps -aq
+        - 모든 컨테이너의 id를 출력한다
+    docker rm $(docker ps -aq)
+        - 모든 컨테이너를 삭제한다
+
+
+
+

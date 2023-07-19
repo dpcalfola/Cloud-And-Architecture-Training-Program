@@ -1,0 +1,27 @@
+< Built image image layers >
+
+"RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:c5ca84f245d30117a9a2720cb4297cedf3642816471d4d699f4d77e39e13a39c",
+                "sha256:bdd0af906c1247f4bfb64213834dc2245d69e5a5d8f5832b46ca96d8e98a71ef",
+                "sha256:a31dc69fcb7178335367bec2612d91258ef124e8b4453ebaaf902d3a41f1fbf3",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:740a39b87f8b9b80b006522205367c1dfb461f4c57f9f1af8887cd6b050592fe"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2023-07-14T01:29:41.768998257Z"
+
+
+
+< Base image' image layer >
+
+"RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:c5ca84f245d30117a9a2720cb4297cedf3642816471d4d699f4d77e39e13a39c"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
