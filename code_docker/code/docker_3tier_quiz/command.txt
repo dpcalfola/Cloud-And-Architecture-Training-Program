@@ -1,0 +1,31 @@
+* wordpress db
+
+docker run -d \
+--name mzc-db-ct08 \
+-v mzc-db-volume:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=password \
+-e MYSQL_DATABASE=wordpress \
+--network mzcwp0 \
+--platform linux/amd64 \
+mysql:5.7
+
+
+
+
+* wordpress
+
+docker run -d \
+-e WORDPRESS_DB_PASSWORD=password \
+-e WORDPRESS_DB_HOST=mzc-db-ct08 \
+-e WORDPRESS_DB_USER=root \
+--name mzc-wp-ct-08 \
+-p 44480:80 \
+--network mzcwp0 \
+wordpress
+
+
+
+
+
+
+docker network connect mzcwp0 mzc-wp-ct-08

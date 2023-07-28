@@ -1,0 +1,3 @@
+Web server: nginx
+Web application: Django
+Database: PostgreSQL

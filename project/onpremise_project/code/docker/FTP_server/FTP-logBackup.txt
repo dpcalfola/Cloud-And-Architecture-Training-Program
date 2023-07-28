@@ -1,0 +1,22 @@
+image: docker pull ubuntu:jammy-20230624
+
+dependency command:
+    network:
+        docker network create \
+        --driver bridge \
+        --subnet=100.1.1.10/30 \
+        mzc-ftp-logBackup-network
+    volume:
+        docker volume create mzc-ftp-logBackup-volume
+
+
+docker run command:
+    docker run \
+    -itd \
+    --name mzc-ftp-logBackup-1 \
+    --network mzc-ftp-logBackup-network \
+    -v mzc-ftp-logBackup-volume:/home \
+    -p 48237:20 \
+    -p 21:21 \
+
+

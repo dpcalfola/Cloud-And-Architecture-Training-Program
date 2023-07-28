@@ -1,0 +1,104 @@
+장애 백업 테스트 환경
+    테스트용 vpc 설정
+        Router setting
+            :Interface FastEthernet 1/5
+                ip address 150.1.1.1
+        VPC 1 setting
+            :
+                ip address 150.1.1.100
+                gateway 150.1.1.1
+
+        VPC 2 setting
+            :
+                ip address 150.1.1.101
+                gateway 150.1.1.1
+
+
+
+        ping test passed
+
+
+
+
+
+
+
+
+
+
+
+SLA setting
+
+        (config)#
+            ip sla 20
+            icmp-echo 150.1.1.100
+            timeout 1000
+            frequency 1
+            exit
+
+        (config)#
+            ip sla 20               # SLA 10번을 생성
+            icmp-echo 150.1.1.100   # ping  150.1.1.100 감시
+                                    # (주의 - 연결 상대방 지점 IP를 입력해야함)
+            timeout 1000            # 1초간 응답이 없으면 실패로 간주
+            frequency 1             # 1초마다 ping을 보냄
+            exit                    # SLA 10번 설정 종료
+
+
+         (config)#
+            ip sla schedule 20 life forever start-time now
+
+
+
+        * 결과
+            #
+            show ip sla 20 statistics 20
+            ->
+                successes 숫자와
+                failures 숫자가 포시됨
+
+        * 테스트 결과
+            1개의 타겟 아이피당 1개의 SLA를 만들어야 함
+
+
+
+
+
+
+
+
+
+EEM setting
+
+    * Configure FTP server information
+
+        (config)#
+        event manager environment ftp_server_ip <FTP_SERVER_IP>
+        event manager environment ftp_username <FTP_USERNAME>
+        event manager environment ftp_password <FTP_PASSWORD>
+        event manager environment remote_directory <REMOTE_DIRECTORY>
+
+
+        (config)#
+        event manager environment ftp_server_ip 192.168.62.3
+        event manager environment ftp_username mzc-ftp
+        event manager environment ftp_password mzc-password
+        event manager environment remote_directory backup-data
+
+
+    * Configure EEM applet (example)
+
+        (config)#
+        event manager applet disorder-pc9-backup
+
+        (config-applet)#
+        event track 20 state any
+        action 1.0 syslog msg "PC9 state is changed"
+        action 2.0 cli command "enable"
+        action 2.1 cli command "configure terminal"
+        action 2.2 cli command "file prompt quiet"
+        action 2.3 cli command "exit"
+        action 3.0 cli command "show clock"
+        action 3.1 cli command "show ip sla statistics 20"
+        action 3.2 cli command "show ip int brief"
+        action 4.0 cli command "write ftp://${ftp_username:$ftp_password}@${ftp_server_ip}/${remote_directory}/center_switch_pc9_${_time_stamp}.txt"

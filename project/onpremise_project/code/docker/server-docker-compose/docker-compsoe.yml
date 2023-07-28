@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+
+  FTP:
+    image: ubuntu:latest
+    container_name: ubuntu1_container
+    command: sleep infinity
+    networks:
+      - my_network
+
+  ubuntu2:
+    image: ubuntu:latest
+    container_name: ubuntu2_container
+    command: sleep infinity
+    networks:
+      - my_network
+
+  ubuntu3:
+    image: ubuntu:latest
+    container_name: ubuntu3_container
+    command: sleep infinity
+    networks:
+      - my_network
+
+  ubuntu4:
+    image: ubuntu:latest
+    container_name: ubuntu4_container
+    command: sleep infinity
+    networks:
+      - my_network
+
+networks:
+  my_network:

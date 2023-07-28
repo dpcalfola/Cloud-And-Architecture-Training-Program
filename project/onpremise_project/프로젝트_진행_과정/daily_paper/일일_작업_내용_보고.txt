@@ -1,0 +1,67 @@
+< 7월 24일 제출 일일 보고서 >
+
+
+2023-07-21(금)
+    - 1차 발표
+    - 서버 구현 상세 계획서 작성 (시작)
+    - 시나리오 수정 참여
+
+2023-07-24(월)
+    - 서버 구현 상세 계획서 작성 완료하기
+    - FTP 서버 구축
+    - DB 서버 구축
+    - 중간 발표 PPT 가안 작성
+
+
+
+
+
+
+< 7월 25일 일일 보고서 >
+
+2023-07-25(화)
+    - DB 서버 구축
+    - VM 을 위한 container 서버 구축 자동화 스크립트 작성 (IaC)
+
+2023-07-26(수) 계획
+    - 오전: VM DHCP 서버 작성 스크립트 작성
+    - 오후:
+        - GNS3 프로젝트와 container server 연동
+        - SLA, EEM을 이용한 로그 백업 로직 구현
+
+
+
+
+< 25일(화) 작업 결과물 - container 서버 구축 자동화 스크립트 >
+
+
+git repository:
+    https://github.com/dpcalfola/onpremise_project_docker_code.git
+
+
+
+
+* VM 에 container 서버 구축 하기
+
+
+    1. ubuntu-server VM 작성 이후 다음의 명령어 실행
+
+            apt-get update && apt-get install -y git
+            git clone https://github.com/dpcalfola/onpremise_project_docker_code.git
+
+
+
+    2. 스크립트 실행
+        a) 패키지 설치
+            sudo sh install_dependency_package.sh
+        b) 컨테이너 서버 구축
+            sudo sh run_container.sh
+        c) 문제 발생시 모든 도커 정보 초기화
+            sudo sh rm_docker_all.sh
+
+
+
+
+
+
+

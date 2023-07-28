@@ -1,0 +1,7 @@
+Create network
+
+docker network create \
+--driver=bridge \
+--subnet=101.2.1.0/24 \
+--gateway=101.2.1.1 \
+mzc-server

@@ -1,0 +1,17 @@
+FTP Server Manual
+
+0. Server information
+
+    접속 정보
+        username = mzc-ftp
+        password = mzc-password
+
+    (주의) FTP server VM 과 ping 통신이 가능한지 먼저 확인할 것
+
+
+1. Router running-config backup example
+    copy running-config ftp://mzc-ftp:mzc-password@VM-IP-ADDRESS/backup-data/<filename>
+
+
+2. Router running-config restore example
+    copy ftp://mzc-ftp:mzc-password@VM-IP-ADDRESS/backup-data/<filename> running-config

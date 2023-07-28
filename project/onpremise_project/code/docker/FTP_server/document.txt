@@ -1,0 +1,24 @@
+ftp setting command
+
+apt-get update -y && \
+apt-get install neovim -y && \
+apt-get install vsftpd -y && \
+apt-get install openssh-server -y
+
+
+
+service vsftpd start && \
+service vsftpd status && \
+
+
+ftp user: mzc-ftp
+password: mzc-password
+
+mkdir /home/mzc-ftp/ftp
+chown nobody:nogroup /home/mzc-ftp/ftp
+chmod a-w /home/mzc-ftp/ftp
+
+mkdir /home/mzc-ftp/ftp/backup-data
+chown mzc-ftp:mzc-ftp /home/mzc-ftp/ftp/backup-data
+
+

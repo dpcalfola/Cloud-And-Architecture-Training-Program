@@ -1,0 +1,139 @@
+< 현재 진행상황 7월 27일 기준 >
+
+
+    * 서버 구현 상세 계획 문서 작성
+        - 2023_07_23_이은상_서버구현_상세_계획.txt
+
+
+    * FTP, DB(MySQL) 컨테이너 IaC 구현 완료
+
+    * Container server 와 GNS3 프로젝트 연동 확인
+        - FTP 서버로 수동 파일 전송 가능 확인 완료
+
+
+    * 모든 작업 code는 git repository로 공유중
+        - https://github.com/dpcalfola/onpremise_project_docker_code.git
+        - 현재 작업 코드 첨부
+
+
+
+
+
+
+
+
+< 각 서버 상세내용 >
+
+
+    * FTP
+    network: 100.2.1.4/30
+    ip address: 100.2.1.6
+    gateway: 100.2.1.5
+    port: 20-21:20-21
+    docker volume: mzc-volume-ftp-logBackup
+    docker network: host
+    ftp user: mzc-ftp
+    password: mzc-password
+
+
+
+    * DB(MySQL)
+    network: 100.2.1.12/30
+    ip address: 100.2.1.14
+    gateway=100.2.1.13
+    port: 3306:3306
+    docker network host
+    docker volume mzc-volume-DB-mysql
+    MySQL version: mysql:5.7
+
+    MySQL user: root
+    MySQL password: mzc-password
+    MYSQL database mzc-database
+
+
+
+    * DHCP
+    - docker container 구현 과정에서 시간 소모가 너무 길어져 DHCP 서버 단독역할을 하는 VM 으로 구축하기로 함
+    - IaC 타입으로 구현 예정
+
+
+
+
+
+
+
+
+
+
+< 서버 구축 변경사항 기록 (25일) >
+
+    (기존 구상)
+        윈도우 HOST 에서 구동하는 도커 데스크탑
+
+    (변경안) 
+        - VM ubuntu 의 Docker engine 에서 구동
+        - Web-WAS-WebDB 서버 구현은 후순위로 미룸 (프로젝트 목표인 2중화와 장애시 백업로그 확보를 우선순위로)
+            - VM 에 컨테이너 구성 방법
+                - github repo 에서 코드를 가져와서 컨테이너 생성
+                - repo 에 컨테이너 생성 관련 명령어 포함
+                - Dependency: Docker engine, git
+            - GNS3 연결 방법
+                - 1안) 각 1개의 서버당 1개의 VM 으로 구성
+                - 2안) 1개의 VM에 모든 컨테이너를 생성하고 V-box 에서 포트 포워딩
+                - 3안) 1안과 2안을 통합하혀 구현 (3개의 VM)
+                    DATA VM(FTP, DB),
+                    DHCP VM,
+                    WEB VM(WEB-server, WAS, Web-DB DNS)
+
+
+
+
+
+
+
+
+
+
+
+< 현재 구환 완료된 작업내용 (27일 기준) >
+
+
+
+    1. 서버 구축 자동화 스크립트
+
+        * git repository:
+            https://github.com/dpcalfola/onpremise_project_docker_code.git
+
+
+        * VM 에 container 서버 구축 하기
+
+            ubuntu-server VM 작성 이후 다음의 명령어 실행
+                    apt-get update && apt-get install -y git
+                    git clone https://github.com/dpcalfola/onpremise_project_docker_code.git
+
+
+        * 스크립트 실행
+
+            a) 패키지 설치
+                ###################################
+                ######### 오류 발생으로 중단  ##########
+                ###################################
+                (현재 방편) VM 에 docker engine 수동 설치 후 스크립트 실행
+            b) 컨테이너 서버 구축
+                sudo sh run_container.sh
+            c) 문제 발생시 모든 도커 정보 초기화
+                sudo sh rm_docker_all.sh
+
+
+        * 결과
+            FTP server, DB server container status up
+
+
+
+
+    2. VM container 서버 구축 후 GNS3 연결
+
+        * 모든 엔드디바이스에서 수동 명령어로 파일 (ex running-config) 백업 가능 확인
+
+
+
