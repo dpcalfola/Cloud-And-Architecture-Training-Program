@@ -1,0 +1,12 @@
+DHCP server
+
+router setting
+
+DHCP IP Helper setting
+# ip helper-address <DHCP server IP address>
+
+
+config terminal
+interface vlan <vlan number>
+ip helper-address 120.10.10.27
+end

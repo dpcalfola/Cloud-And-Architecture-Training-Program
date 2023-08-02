@@ -1,0 +1,28 @@
+
+< 3-tier Web service >
+
+* 웹 서비스를 3가지 논리적인 계층으로 구분하여 설계하는 아키텍처 패턴
+
+
+* Tier
+    - Presentation Layer
+        - Web server 가 담당
+        - 사용자의 요청을 직접 받고 응답해주는 영역이며 나머지 두 개층이 노출되지 않도록 보호 (proxy 서버 역할)
+        - 정적 파일을 제공하며 동적 파일이 필요할 경우 Application Layer 로 요청을 전달하고 응답을 받아 사용자에게 전달
+    - Application Layer
+        - Web application 이 담당
+        - 비지니스 로직을 처리
+        - Presentain layer 와 Data layer 사이에서 통신을 주고 받으며 동적인 웹 페이지를 생성
+    - Data Layer
+        - Database 가 담당
+        - 데이터를 저장하고 관리하는 영역
+
+
+* 장점:
+    - 모듈화, 유연성
+        - 각 계층을 분리하여 개발하므로 유지보수가 용이
+        - 한 계층을 변경해도 다른 계층에 영향을 미치지 않음
+    - 확장성
+        - 계층별로 구분된 서버를 필요에 따라 각각 추가할 수 있음(스케일 인/아웃)
+    - 보안성
+        - 외부로 노출되는 영역은 Presentation Layer 뿐이므로 보안에 용이
