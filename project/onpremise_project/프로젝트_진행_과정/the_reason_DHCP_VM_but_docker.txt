@@ -15,3 +15,43 @@ DHCP 서버를 도커가 아닌 별도의 VM 으로 구성한 이유
         문제 가능성이 더 적고 간단한 솔루션이 존재하기 때문에 굳이 container로 구축하지 않음
         솔루션 도출 과정에서 득보다 실이 많다고 판단하였음
 
+
+
+
+FROM ubuntu:jammy-20230624
+LABEL maintainer="github.com/dpcalfola"
+
+RUN apt-get update -y && \
+    apt-get install isc-dhcp-server -y
+
+COPY dhcp-volume/dhcpd.conf /etc/dhcp/dhcpd.conf
+
+EXPOSE 67/udp
+EXPOSE 68/udp
+
+CMD dhcpd -4 -f -d --no-pid -cf /etc/dhcp/dhcpd.conf eth0 \
+    tail -f /dev/null
+
+
+
+서버 구축에 사용되는 코드는 모든 환경에서 동작하는가?
+
+
+
+
+
+
+3팀 질문 목록
+
+1. 서버 구축에 사용되는 코드는 모든 환경에서 동작하는가?
+
+2. ospf를 사용하면 굳이 static route를 사용하지 않아도 되지 않는가?		 --> 1팀
+-- 외부에서 들어오는 트래픽에 대해서 경로 추적이 가능하기 때문에 보안성을 높이기 위해 사용했다.
+
+3. EtherChannel을 전체로 구성하지 않고 L3 스위치에서만 구성한 이유가 있는가?	 --> 2팀
+-- 이더채널을 사용함으로써 트래픽이 많이 몰리는 부분에 대역폭을 확장하여 원할한 통신을 지원하고
+특정 포트의 장애가 발생하여도 무리없이 패킷이 통신을 할 수 있도록 하기 위해 위와 같이 구성하였다.
+
+4. ospf를 이용하여 area를 나누는 기준과 area를 분리한 이유는 무엇인가?
+-- area 분리 이유는 해당 에리어 안에서 경로 정보가 유동성 있게 유지 보수가 가능하기 때문이다.
+그리고 분리를 통해서 각 네트워크가 독립성을 가져 트래픽 크기의 축소를 목적으로 하기 때문에 area를 분리하였다.
