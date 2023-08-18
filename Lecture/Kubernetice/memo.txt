@@ -1,0 +1,34 @@
+pause container
+
+kubernetes object
+    - pod
+    - service
+    - deployment
+    - namespace
+    - configmap
+    - secret
+    - ingress
+    - persistentvolume
+    - persistentvolumeclaim
+    - statefulset
+    - daemonset
+    - job
+    - cronjob
+    - horizontalpodautoscaler
+    - limitrange
+    - resourcequota
+    - role
+    - rolebinding
+    - clusterrole
+    - clusterrolebinding
+    - serviceaccount
+    - networkpolicy
+
+
+
+
+
+Kubernetes controller
+
+    ReplicaSet
+    Deployment
