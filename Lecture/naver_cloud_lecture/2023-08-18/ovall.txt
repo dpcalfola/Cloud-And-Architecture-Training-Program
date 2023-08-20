@@ -1,0 +1,70 @@
+실습계정 - 이번주 주말까지 사용 가능
+개인계정  사용시 요금 부과
+
+시험 - 화 / 목
+
+
+
+
+
+#
+    IaaS
+        - OS 까지 CSP가 제공
+
+    PasS
+        - DB
+
+    SaaS
+        - WorkSpace
+
+
+
+
+#
+    naver 에서 Private Cloud 인프라 구성하여 제공하는 서비스도 있응
+
+
+
+
+
+# 글로벌 클라우드 3사 특징
+
+    AWS
+        - 남는 서버를 팔아서 수익을 얻자
+
+    Azure
+        - 멀티 강조
+
+    GCP
+        - ?
+
+    Naver Cloud
+        -
+
+
+
+
+
+
+#
+모바일 앱 서비스
+    - 서버의 상태 모니터링 가능
+
+welcome2ncloud
+
+
+
+
+# 오늘 실습
+- Auto Scaling
+
+
+
+
+
+
+# VGW
+    - Virtual Private Gateway
+
+
+

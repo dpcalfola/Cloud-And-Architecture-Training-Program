@@ -1,0 +1,104 @@
+< CAPEX, OPEX >
+
+CAPEX and OPEX are common financial terms used in business and technology, particularly when discussing investments and operational costs related to cloud computing.
+
+CAPEX (Capital Expenditure):
+CAPEX refers to the initial investment a company makes in acquiring physical assets or resources, such as equipment, hardware, infrastructure, or facilities. These assets are expected to have a long-term utility and contribute to the company's ability to generate revenue over time. In the context of cloud computing, CAPEX could include purchasing servers, data center space, networking equipment, and other hardware needed to build an on-premises IT infrastructure.
+
+OPEX (Operational Expenditure):
+OPEX, on the other hand, represents the ongoing operational costs required to run a business or maintain the acquired assets. These costs are incurred regularly and typically include expenses like employee salaries, utilities, maintenance, software licensing, and other day-to-day expenses. In the context of cloud computing, OPEX encompasses subscription fees, usage charges, support fees, and other expenses associated with using cloud services.
+
+Cloud Computing and CAPEX/OPEX:
+One of the significant advantages of cloud computing is the shift from a traditional CAPEX-heavy model to a more OPEX-oriented model. Here's how this shift works in the context of cloud computing:
+
+Traditional CAPEX Model:
+In traditional IT setups, companies would invest upfront in purchasing and maintaining their own hardware and infrastructure. This required a significant initial investment, often leading to underutilized resources and the need for periodic hardware upgrades.
+
+Cloud OPEX Model:
+Cloud computing offers a more flexible approach. Instead of buying and maintaining physical infrastructure, companies can rent computing resources from cloud service providers like Amazon Web Services (AWS), Microsoft Azure, or Google Cloud. This eliminates the need for large upfront investments and allows businesses to pay for the resources they actually use on a pay-as-you-go basis. This shift from buying to renting leads to a more predictable and manageable OPEX cost structure.
+
+In summary, when discussing cloud computing, the terms CAPEX and OPEX refer to the financial aspects of infrastructure investment. The move to the cloud often reduces the need for upfront capital expenditures, making it more attractive for businesses to allocate their budgets towards operational expenditures that align with their actual usage and needs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ERP system
+
+An ERP (Enterprise Resource Planning) system is a comprehensive software solution designed to integrate and manage various business processes and functions within an organization. It provides a centralized platform that allows different departments and functions to share and access information, collaborate, and streamline their operations. ERP systems are used to enhance efficiency, accuracy, and visibility across an organization's processes.
+
+Key Features of ERP Systems:
+
+Integration: ERP systems integrate data and processes from different departments such as finance, human resources, sales, inventory, procurement, manufacturing, and more. This integration eliminates data silos and allows for better communication and collaboration.
+
+Centralized Database: ERP systems utilize a centralized database to store and manage data. This ensures that all departments have access to the most up-to-date and accurate information.
+
+Automation: ERP systems automate various business processes, reducing the need for manual data entry and repetitive tasks. This can lead to increased efficiency and reduced errors.
+
+Reporting and Analytics: ERP systems provide tools for generating reports and analyzing data, allowing organizations to make informed decisions based on real-time insights.
+
+Standardization: ERP systems often encourage standardized processes and workflows, which can improve consistency and efficiency across the organization.
+
+Customization: While ERP systems offer standard modules, they can also be customized to meet the specific needs of an organization. This ensures that the system aligns with the organization's unique business processes.
+
+Scalability: ERP systems are designed to scale as an organization grows. New modules and functionalities can be added to accommodate changing needs.
+
+Regulatory Compliance: ERP systems can help organizations maintain compliance with industry regulations and standards by tracking and managing relevant data.
+
+Vendor Management: Some ERP systems include features for managing vendor relationships, procurement, and supply chain processes.
+
+Popular ERP Vendors:
+
+There are numerous ERP vendors in the market, each offering their own set of features and functionalities. Some of the well-known ERP vendors include:
+
+SAP ERP
+Oracle ERP Cloud
+Microsoft Dynamics 365
+Infor ERP
+Epicor ERP
+NetSuite (by Oracle)
+Workday ERP
+Sage ERP
+Choosing the right ERP system for an organization requires careful consideration of the organization's specific needs, budget, industry, and scalability requirements. Implementation of an ERP system is a significant undertaking that involves planning, data migration, training, and change management to ensure successful adoption and utilization across the organization.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+< Cloud Workload >
+클라우드 워크로드는 클라우드 리소스에서 실행할 수 있는 특정한 애플리케이션, 서비스, 기능 또는 특정한 작업량입니다. 가상 머신, 데이터베이스, 컨테이너, Hadoop 노드 및 애플리케이션이 모두 클라우드 워크로드로 간주됩니다.
+
+
+
+
+
+
+
+
+
+
+
+< Hadoop >
+
