@@ -1,0 +1,996 @@
+* DR
+
+    - RPO: Recovery Point Objective (목표 복구 시점)
+    - RTO: Recovery Time Objective (목표 복구 시간)
+
+
+
+
+
+
+
+
+
+
+클라우드의 역사 (각 역사별 솔루션의 변천사 ?)
+
+
+    - 1960
+
+    - 1970
+
+    - 1980
+
+    - 1990
+
+    - 2000
+
+    - 2010
+        - Container 의 등장
+
+        - 2013
+            - Docker
+            - kubernetes
+
+
+
+
+
+
+
+
+< 서버 가상화 >
+
+    - 기존:
+        Bare Metal Server
+
+    - 가상화
+        Hypervisor 를 이용
+
+
+
+
+< 전가상화 / 반가상화 (14p) >
+
+
+    - Type 1 ( Bare Metal )
+        - 전가상화 (Full Virtualization)
+            - Vmware, MS Hyper-V
+            - 오버헤드 발생
+            - Binary Translation
+        - 반가상화 (Para-Virtualization)
+            - Xen, KVM
+            - 오버헤드가 상대적으로 적음
+            - 게스트 os 의 커널을 수정
+            - Hyper Calls
+
+    - Type 2
+        - Hosted
+
+
+    * KVM
+        - Type 1 or Type 2 (both possible)
+
+
+
+
+
+< CAPEX, OPEX >
+
+    CAPEX 비용
+        - Capital Expenditure
+        - 선투자 비용
+        - 온프레미스 데이터센터에서의 CAPEX
+        - 장비의 감가상각
+        - (대강 온프레미스 구조에서 발생하는 비용이라는 뜻?)
+
+    OPEX 비용
+        - Operational Expenditure
+        - Day-to-day 비용
+        - 클라우드에서의 OPEX
+        - 선지출 비용이 필요없다
+
+
+
+< 런치 세미나 - 온라인 >
+    매주 목요일 (edu.ncloud.com)
+
+
+
+
+
+
+< ACG = Access Control Group >
+    - 서버 하위 메뉴
+
+
+
+
+< DSR = Direct Server Routing >
+
+    - response to client directly (without going through Load Balancer)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+< 서비스 상품군 >
+
+1. 인프라 상품군
+
+    1.1 Compute
+            Server - 클라우드에서 제공하는 VM 서버
+            SSD Server - VM 중에 SSD 디스크를 사용하는 서버
+            GPU Server - VM 중에 GPU 를 사용하는 서버
+            Bare Metal Server - 클라우드에서 제공하는 물리서버
+            Auto Scaling - VM 수를 사용량에 따라 조절하는 Auto Scaling
+            Cloud Function - 서버 생성 없이 코드를 수행할 수 있는 비지니스 로직 실행
+
+    1.2 Containers
+            Container Registry - 컨테이너 이미지 저장/관리
+            Kubernetes Service - 컨테이너 오케스트레이션 툴
+
+    1.3 Global Infrastructure
+            Global Region - 한국, 일본, 홍콩, 싱가폴, 미국(서부), 독일, (태국, 베트남, 대마나 예정)
+            Global Latency - NCP 글로벌 리전 간 글로벌 백본의 속도 상황판
+
+    1.4 Storage
+            Block Storage - VM 서버에 추가할 수 있는 블록 스토리지(디스크)
+            Object Storage - 대량 파일을 저장하는 오브젝트 스토리지
+            NAS - 여러 서버가 파일을 공유하는 스토리지
+            Backup - VM 내의 파일이나 DB를 백업하는 상품
+            Archive Storage - 백업, 아카이빙 파일 저장하는 스토리지
+
+    1.5 Migration
+            Data Teleporter - 대용량의 대에터를 빠르게 이전할 수 있는 전용 어플라이언스 장비
+            Object Migration - 다른 클라우드 환경에 있는 데이터를 네이버 클라우드 환경으로 안전한고 빠르게 마이그레이션
+
+    1.6 Networking
+            Load Balancer - VM 서버들 간 부하 분산을 위한 L4
+            VPC - 가상의 사설망 구성
+            IPsec VPN - 외부 네트워크와 IPsec VPN으로 연결
+            Global DNS - 글로벌 DNS 서비스
+            NAT Gateway - Private Subnet 에서 외부와 통신 할 수 있도록 가교 역할
+            Cloud Connect - 데이터 센터 환경과 네이버 클라우드 플랫폼을 전용 사설 네트워크로 연결
+            SSL VPN - 고객 사이트로 안전하게 접근 가능한 SSL 가상 사설망
+            Global Traffic Manager - DNS 기반으로 네트워크 트래픽을 다수의 서버로 분산
+
+    1.7 Hybrid & Private Cloud
+            Hybrid Cloud Hosting - 데이터센터 환경과 클라우드 환경을 통합해서 운영할 수 있는 상품
+            Vmware on NCP - 엔터프라이즈 기업 고객을 위한 Vmware 기반 하이브리드 클라우드 서비스
+
+    1.8 Content Delivery
+            CDN+ - 국내 CDN 서비스
+            Global CDN - 글로벌 CDN 서비스
+            Global Edge - 대규모 글로벌 네트워크를 사용하여 전세계의 콘텐츠를 안정적이고 빠르게 전송하는 CDN 서비스
+
+
+
+
+2. 플랫폼 상품군
+
+    2.1 Database
+            Tibero
+            Cloud DB for MySQL - HA 구성, 모니터링, 백업 등이 지원되는 관리형 MySQL 상품
+            Cloud DB for MSSQL - HA 구성, 모니터링, 백업 등이 지원되는 관리형 MSSQL 상품
+            Cloud DB for Redis - HA 구성, 모니터링, 백업 등이 지원되는 관리형 Redis 상품
+            Cloud DB for MongoDB - HA 구성, 모니터링, 백업 등이 지원되는 관리형 MongoDB 상품
+            Cloud DB for PostgreSQL - PostgreSQL 데이터베이스를 쉽게 구축하고 관리하는 완전 관리형 서비스
+
+    2.2 Gaming
+            Gamepot - 게임에 필요한 기능을 쉽고 빠르게 구현할 수 있도록 안정적인 인프라와 SDK를 함께 제공
+            Game Report - 게임 데이터 전문 빅데이터 서비스
+            Game chat - 게임 전용 라이브 채팅 플랫폼
+
+    2.3 Blockchain
+            Blockchain service - Hyperledger Fabric을 이용하여 프라이빗 컨소시엄 방식의 블록체인
+            네트워크를 구성
+
+    2.4 Analytics
+            Cloud Hadoop - Apache Hadoop, HBase, Spark, Hive 등의 오픈소스기반 완전 관리형 클라우드 분석 서비스
+            Data Analytics Service - 웹사이드 사용자의 이용 패턴 분석
+            Cloud Data Box - 대량의 네이버 온라인 행동 데이터와 효과적으로 데이터를 분석할 수 있는 최첨단 분석 인프라를 제공
+            Search engine service - 엘라스틱서치 클러스터를 손쉽게 구성
+            Cloud Data Streaming Service - Apache Kafka Cluster를 제공
+            HEaaN Homomorophic Analytics - 동형암호 기술을 활용한 암호화된 데이터 분석 및 연산 서비스
+            Cloud Search - 검색 기능을 쉽고 빠르게 구현할 수 있는 개발 플랫폼
+            Data Forest - 빅데이터 분석에서 머신러닝까지 분석 가능한 대용량 분석 플랫폼
+            Data Box Frame - 특정 데이터를 여러 명의 분석자가 자유롭게 분석하면서도 임의 반출은 통제할 수 있어 높은 안정성을 보장
+            Data Catalog - 데이터 자산의 활용성을 강화하는 클라우드 기반의 메타데이터 통합 및 관리 서비스
+
+    2.5 Media
+            VOD station - VOD streaming 서비스
+            Video Player - 비디오 플레이어 기능
+            Live Station - 동영상 스트림 실시간 변환 서비스
+            Image Optimizer - 원본 이미지를 실시간으로 리사이징 변환 및 전송
+            Media Connect Center - 네이버 클라우드 플랫폼 미디어 상품들을 하나의 통합된 환경으로 제공
+            Video Player Enhancement - 다양한 디바이스 환경에서 비디오 재생 테스트, 배포, 최적화 진행이 가능한 SaaS 기반 비디오 플레이어 서비스
+
+    2.6 IoT
+            Cloud IoT Core - 사물 인터넷 디바이스를 안전하게 연결하여 실시간으로 데이터를 수집하고 처리할 수 있는 플랫폼
+            IoT Device Hub - IoT 서비스 구성에 필요한 디바이스 설계, 개발, 제조, 운영 등 모든 단계를 관리 할 수 있는 서비스
+            IoT Edge - 대규모 IoT 디바이스를 클라우드와 빠르고 안전하게 연결하고 관리할 수 있는 서비스
+
+
+
+
+3. 어플리케이션 상품군
+
+    3.1 AI NAVER API
+        Clova Face Recognition
+        Clova Voice - 음성 합성 기술
+        Clova Speech Recognition - 음성 인식 AI
+        Clova Sentiment - 텍스트에 담긴 감정을 분석해주는 API
+        Clova Summary - 긴 문서를 요약
+        AiCall - 음성인식 + 채팅 + 음성학성 -> AI 고객센터
+        Object Detection - 이미지 속 객체를 인식하고 분류하는 API
+
+
+
+
+4.
+    4.1 Biz Application
+            Workplace - 인사 회계 급여 SaaS
+            Workbox - 기업용 파일 공유 서비스
+            Hello - 화상 미팅
+            Live COMMERCE POT - 쇼핑 라이브 컨설팅
+            MARKETPOT - 마켓 통합 관리 서비스
+            Naver Works - 메시지, 메일, 캘린더. 모바일 업무용 협업 툴
+            RPA - Service 인프라 구축 및 설치 없이 업무 자동화 환경 제공
+            Ncloud chat - 모든 비지니스에서 사용 가능한  Business Chatting Solution
+
+
+
+        .
+
+
+
+5 Networking
+    VPC
+    Load Balancer
+    DNS(deprecated)
+    Global DNS
+    IPsec VPN
+    Global Traffic Manager
+    Cloud Connect
+        - 온프레미스 환경과 클라우드플랫폼 사이의 데이터 전송(보안 속도)
+    5G Connect
+
+
+
+
+
+
+XEN - 16개 스토리지 10GB-2TB
+KVM - 21개 스토리지 100GB-16TB
+
+
+
+
+VPC
+
+    주소범위 (subnet 16~28)
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+
+
+
+
+
+
+< 로드 밸런서 >
+
+
+    application load balancer
+        - 30,000 60,000 90,000
+        - RR, LC, Hash
+        - SSL
+        - L7 로드 밸런싱
+
+    Network load balancer
+        - 100,000 200,000 300,000
+        - RR, Hash
+        - DSR
+        - TCP 로드밸런싱
+        - 정보수집 주기: 1분, 5분, 2시간, 1일
+
+    Network Proxy load balancer
+        - 30,000 60,000 90,000
+        - RR, LC, Hash
+        - TCP 세션 관리
+        - SSL 인증
+
+
+(Target Group)
+    - 요청 처리할 대상 집합
+    - Health Check
+        (VPC - Default 30sec)
+        (Classic - Default 6sec)
+    - RR 로 초기 세팅 후 변경
+    - Sticky, Proxy 변경 가능
+
+
+
+
+
+
+
+
+
+
+
+< CDN >
+
+요금 - 월 전송량, 월 요청수
+
+
+
+
+< SSL VPN >
+
+
+
+
+
+
+< 의존성 >
+
+리전
+    - VPC
+    - Object Storage
+    - Archive Storage
+
+존
+    - Subnet
+
+멀티존
+    - Cloud DB
+    - Load Balancer
+
+전세계
+    - Security
+    - Sub Account
+    - Global Traffic Manager
+
+
+
+
+
+DB
+
+* Cloud for <DB name>
+    - 자동 Failover 지원
+
+
+
+
+
+
+1) MySQL
+    32vCPU 256GB 6TB
+    Failover, 10대 branch
+    Read 부하 분산
+    최대 30일 백업
+    Multi Zone -> HA
+    Port: 3306
+
+    - 일반적으로 Private Subnet
+    - Public Subnet을 붙여서 Public Access 가능
+
+2) Redis
+    3샤드 ~ 10샤드
+    오토샤딩
+    운영중 스펙(Memory) 업그레이드 가능
+    자동 Fail-over
+    Port: 6379
+    최대 7일 백업***
+
+    - 메모리 기반의 DB (캐시 DB)
+    - Cluster 로 구성이 중요함
+    - NCP는 레디스를 클러스터 형태로 서비스함
+
+    - 샤딩, 컬렉션
+    - 샤딩은 데이터를 분산시키는 것
+    - auto sharding (NCP 지원)
+
+    - 기본 4core
+    - Config group : 웹 콘솔에서 설정 가능
+
+
+
+3) MS-SQL
+    1분단위 쿼리 레벨 성능 분석 지원
+    최대 30일 백업
+    Principal - Mirror 2대
+    Port: 1433
+
+
+
+
+4) MongoDB
+    7대 레플리카셋 확장
+    일기 부하분산
+    2TB 자동 디스크 확장
+    설치 과정 중 Sharded cluster, Replica set 선택 가능
+    Port: 27017
+
+
+5) PostgreSQL
+    10GB ~ 6TB, 10GB 단위 자동 확장
+    최대 5개 레플리카 확장
+    멀티존
+    자동 Failover
+    port: 5432
+
+
+
+
+
+
+
+
+
+
+NCP Application
+
+1) Geolocation
+2) MAps
+3) nShortURL
+4) Search Trend
+
+
+
+
+
+
+
+
+AiTEMS -> 광고
+
+
+
+
+
+
+
+
+
+
+< Storage >
+
+1. Object Storage
+    - 객체 기반 저장 스토리지
+    - 접근 방법:
+        - 콘솔
+        - Restful API
+        - SDK
+        - S3 Compatible API
+        - 정적 웹사이트 호스팅
+        - Data Lifecycle -> 30일이 지나면 Archive로 이동하는 기능 제공
+        - 접근 제어 관리 (Sub Account)
+        - CDN, Image Optimizer, Cloud Hadoop, Cloud Log Analytics 등과 연계 가능
+
+
+2. Archive Storage
+    - 보관 비용이 저럼
+    - 저장 비룡은 저렴하지만 API비용은 비쌈
+
+    - 콘솔, API(swift, s3), CLI, SDK
+    - 최소 보관기간 없이 사용 가능***
+    - 오브젝트 생명주기 관리 (퍼지 룰 적용 가능)
+    - Sub Account 연동 (접근 제어)
+
+    - 이용 신청
+    - 컨테이너(버킷) 생성
+    - 아카이브 정책 설정 (오브젝트 스토리지 선택, 오브젝트 스토리지에 대한 오브젝트 보관 기간 설정)
+
+
+
+3. NAS
+    - 다수의 서버에서 공유하여 사용할 수 있는 스토리지
+    - 파일 엑세스, 클라이언트 os 관점에선 파일 서버로 인식
+    - minimum 500GB, Maximum 10TB, 추가 100GB 단위
+    - NFS(linux), CIFS(windows) 프로토콜 지원
+    - 서버 사설 IP를 이용한 ACL 오픈으로 타 계정 서버 마운트 가능
+    - 스냅샷(자동 스냅샷 기능)
+    - 동적 볼류 사이즈 조정 가능
+    - 모니터링 및 이벤트 알람 설정 기능 제공
+
+
+
+
+4. Block Storage
+    - 최소 10GB 씩 추가 가능
+    - 공유 불가능
+    - Detach, Attach 가능
+
+
+
+
+* Storage 퍼포먼스 구분
+    - Cold: Archive Storage, Object Storage(분류상 - 정적 파일 다수)
+    - Warm: Spinning Drive, HDD
+    - Hot: SSD, Flash Drive, 구조화된 데이터(RDBMS)
+
+
+
+
+
+
+
+< Data Migration >
+
+1. Date Teleporter
+
+    - 최대 100TB
+    - 물리 장비를 가져가서 데이터를 옮김
+    - 지원속도: 1Gbps, 10Gbps, 40Gbps
+    - Protocol: FTP, NFS, CIFS, Direct
+    - rsync(Remote Sync) 를 이용
+    - delta encoding algorithm (rcp, scp 보다 빠르고 효율적)
+    - object storage, 혹은 NAS 로 이동
+
+    - (<-> Cloud Connect: 온프레미스-클라우드 온라인 연결)
+
+
+
+2. Object Migration
+    - 타 클라우드 환경의 데이터를 이관해주는 서비스
+    - AWS, Azure 지원 (GCP 지원안함)
+    - 원본 버킷과 타겟 버킷이 미리 생성 되어야 한다
+
+
+3.Backup
+    - 최소 7일 ~ 최대 52주
+    - 소산, 존 분산
+    - 백업 방식 (전채백업, 증분백업, 차등백업)
+    - 별도의 서비스로 제공
+    - 백업 서비스 유형(파일 시스템 또는, 데이터베이스 백업)
+    - 단일 서버의 하루 백업 최대 용량은 1TB
+
+
+
+
+
+
+
+
+
+< Object Storage >
+
+1. 버킷 생성
+    - 버킷 이름, 잠금설정, 암호화(KMS 연동)
+    - 버킷 공개여부
+    - 공개에 대한 권한 부여 가능
+
+2. 버킷에 파일 업로드
+    - 웹에 드래그앤 드랍으로 업로드 가능
+    - 버킷 내 파일에 대한 공유 링크 생성 가능
+    - 버킷 내 각 파일에 대해 접근 제어 설정 가능(네이버 클라우드 플랫폼 계정에 권한 할당)
+    - S3 Browser 를 통해 파일 관리 가능
+    - Archive storage 로 전환 가능
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+< AI >
+
+파파고 series
+
+Clova series
+
+Clova Chatbot
+    - chatbot builder
+    - CSS/CSR 연동
+        - CSS: ?
+        - CSR: Clova Speech Recognition
+    - 라인, 톡톡, 카카오톡, 페이스북 메신저 연동
+
+
+
+Clova Speech Recognition(= CSR, 60초 이하)
+    - 음성을 텍스트로
+    - RestAPI
+    - 한국어, 영어, 일어, 중국어(간체)
+    - 60초가 한계 (60초 이상은 Clova Speech 사용 해야함)
+
+
+
+
+Clova Voice
+    - 텍스트를 보이스로 변환
+
+
+Clova Summary
+    - 요약
+
+
+Clova Sentiment
+    - 감정 분석
+
+
+Clova Dubbing
+    - 최대 500mb, 20이내 영상에 대해 더빙
+
+CFR
+    - Clova Face Recognition
+
+
+Clova OCR
+    - Clova Optical Character Recognition
+    - 이미지에서 텍스트 추출
+
+
+Papago Translation
+    - 높임말
+
+
+Pose Estimation
+    - Restful API
+    - 2MB 이하
+
+
+Object Detection
+    - Restful API
+    - 2MB 이하
+
+
+
+
+
+
+
+< Application Service >
+지오로케이션
+    - IP 기잔으로 위치 정보 제공 (국내-동, 해외-주)
+
+맵스 (네이버 지도)
+
+SENS
+    - SMS, App Push
+    - SNS
+
+
+nShortURL
+Search Trend
+
+
+
+Outbound Mailer
+    - 개인화된 콘텐츠
+    - 치환 태그 (나만 메일을 받은 것 같이)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+오토 스케일링 그룹당 생성 가능한 최대 서버 대수
+40
+
+
+클라우드 로그 Analytics 최대 로그 용량
+200GB
+
+사용자의 웹사이트에 검색 기능을 제공하는 상품 네이버 형태소 분석 처리기
+Cloud Search
+
+
+
+
+
+
+
+< GPU 서버 >
+
+VM
+    -> T4 * 2
+    -> V100 * 4
+
+Bare Metal
+    -> A100 * 8
+    -> 로컬 NVME 디스크를 기본으로 지원
+
+
+
+
+
+
+
+
+한국 -> 다됨
+싱가폴: HCP 빼고 다됨
+일본: HCP, 컨테이너 레지스트리 안됨
+미국(서부)=독일: GPU, Ramda, HPC, Container Registry 안됨
+홍콩: Compact server 만 됨
+
+
+
+
+
+
+Bare Metal
+    - 스토리지 추가 불가
+    - 스토리지 크기 변경 불가
+    - 오토 스케일링 불가
+
+    - SSD 스토리지 가능
+    - 네트워크 인터페이스 가능
+
+
+
+GPU
+    - 오토스케일링, 네트워크 지원 암함
+
+
+
+마이크로
+    - 장난감
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+< Management & Governance Service >
+
+    1. CLA - 로그를 한곳에 모아 저장하고 분석한다
+
+    2. Cloud Insight - 클라우드 성능 운영지표 모니터링, 감시, 알람
+        - 통함 관리 모니터링 서비스
+        - NCP 상품 및 사용자 애플리케이선 성능/운영 지표 One Page 제공
+        - 기본 메트릭, 커스텀 매트릭 설정 가능
+        - 이벤트 룰 생성,
+        - 예외처리 가능 (유지보수 설정, 시스템 내리는 테스트시 알람이 오지 않도록)
+
+    3. Sub Account
+        - 접근 제어
+
+
+    4. WMS (Web Service Monitoring System)
+        - 웹페이지 품질 측정 도구
+
+        - 모니터링 테스트 Default
+            - 1분
+
+        - 모니터링
+            - 시나리오 기반 모니터링, 이용 패턴에 따른 기능별 모니터링
+            - URL 기반 테스트
+            - 지역별 테스트 가능
+
+        - 경보(알람) 설정 가능 (SMS, Email)
+
+
+
+    5. Cloud Activity Tracer
+        - 다양한 계쩡 활동 로그 수집
+        - 서브 어카운트들의 작업 내용들을 기록 및 추적, 수집
+        - API, SDK, CLI
+        - CLA(cloud log analytics 연동 필수)
+        - Export
+
+
+    6. Resource Manager
+        - 리소스 관리 서비스
+
+
+    7. Cloud Adviser (VPC only)
+        - 주 단위 메일 발송
+
+
+    8. Organization
+        - 통합 결제, 거버넌스 정책 수립, 이용 한도 관리 등등의 통합 관리목적
+
+
+
+
+
+
+
+
+
+
+< Cloud Data Box >
+
+    - 분석은 가능하나 반출시 허가 필요
+
+
+
+
+
+
+
+
+
+CLA = Cloud Log Analytics
+
+    - Agent 기반 동작
+    - Object Storage 연계 파일 보관
+
+
+    - ***** 최대 100GB, 30일 동안 보관 ******
+
+
+
+
+
+
+
+
+
+
+
+
+Cloud Hadoop
+
+    - 하둡 클러스터 구성을 쉽게 할 수 있다(멀티 노드)
+    - 데이터 분석 툴 (크러스터형)
+    - 프레임워크 지원 (Hadoop, Hbase, Spark, Hive, Presto)
+
+
+
+Search Engine Service
+    - Elasticsearch 클러스터
+        - 1대 매니저 노드 3대 이상 데이터 노드 로 구성
+    - Kibana 연계 가능 (시각화)
+
+
+
+
+
+Cloud Data Streaming Service
+    - Apache Kafka
+    - 분산 메시지 시스템
+    - VPC 내부에 구성
+        - 매니저 노드 1대, Broker 노드 최소 3대로 시작
+    - CMAK을 통해 클러스터 관리
+    - Zookeeper 연계 가능
+
+
+
+
+
+
+
+
+IPsec VPN
+    -> 터널링 VPN
+
+
+
+
+
+
+
+
+< Security >
+
+App Safer
+File Safer
+
+
+Web Security Checker
+    - 22가지 취약점 점검, 대응방안 제공
+
+
+
+System Security Checker
+    - OS, WAS 설정 취약점 점검
+    - 에이전트 설치후 사용
+    - KISA 보안 설정 가이드 + Naver 보안 설정
+    - Umask, 홈 디렉토리 권한, 익명 FTP 비활성화 등
+
+
+App Security Checker
+    - 마켓 오픈 전 사용
+    - 진단 리포트 제공
+
+
+Certificate Manager
+    - SSL 인증서 관리 서비스
+    - 인증서 발급, 갱신, 관리 (알람)
+
+
+
+Security Monitoring
+    - Basic
+    - Managed (유료)
+        - 리포트
+
+
+
+WebShell Behavior Detector (VPC only)
+    - 에이전트 기반 탐지
+    - 행위 기반 탐지
+    - 의심 파일 격리 혹은 복구
+
+    - 지원 환경
+        - Linux,
+        - Apache, Nginx, Tomcat
+
+
+
+
+
+
+
+< Media >
+
+1. Live Station
+    - * 썸네일 이미지 추출
+    - * 타임머신(Time Shift) -> 처음부터 보기 가능
+    - * CDN 연동 (동시 송출)
+    - * 녹화 저장(Trans Encoding - MP4, HLS)
+
+2. VOD station
+    - Object Storage: VOD 서비스
+    - CDN 연동
+    - Live Station 연동
+    - DRM
+    - Media Connection
+
+3. Image Optimizer
+    - CDN 연동
+    -
+
+
+
+
+
+< Works >
+. Naver Works
+    - Saas
+    - 디자인 튜닝 가능
+    - 메신저 중심,
+    - Free, Lite, Basic, Premium
+
+RPA service (bot)
+    - Automation
+    - UiPATH RPA 솔루션 기반
+    - 봇 개발, 배포, 관리, 모니터링
+
+
+

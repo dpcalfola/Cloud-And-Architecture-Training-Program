@@ -1,0 +1,73 @@
+< Live Station >
+
+    - 트랜스코딩
+
+    - **프로토콜: HLS, DASH, RTMP
+
+    - Thumbnail image 추출
+    - Time Shift
+
+    - ** CDN 연동
+
+    - Re-Stream 기능으로 타 플랫폼 중계
+        - 다른 플랫폼으로 동시 송출
+
+    - ** 영상을 저장 할 수 있는 DVR 기능 제공 (최대 6시간)
+
+
+    ** Input / Output 프로토콜 및 스펙 암기하기
+        - (교재_F:104p)
+
+
+
+
+
+
+< VOD Station >
+
+    - DRM
+        - 자체 DRM 기능을 제공하는것이 아니라 외부 DRM 솔루션과 연동할 수 있는 인터페이스 제공
+
+    - 지원 사향
+        - 자맙 입력 형식 암기
+            - vtt, srit, dfxp, ttml, cap
+
+
+
+
+
+< Image Optimize >
+
+    - 이미지 사이즈 변환
+    - 섬네일 호출 url
+        - CDN 도메인 + 오브젝트 스토리지 내의 파일 경로 + 섬네일 생성 옵션
+
+    - 이미지 효과
+        - 워터마크(이미지 경로, 위치, 오프셋)
+        - **필터: 샤픈, 블러, 흑백
+        - **변환 이미지 미리보기
+
+    - 암기할 부분 (docs)
+        https://guide.ncloud-docs.com/docs/ko/media-media-3-1
+        (쿼리 스트링 작성 가이드 - 옵션)
+
+
+
+
+
+< Video Player >
+    - 기능
+        - 재생 속도 조절 기능
+        - 브라우저 최소화시 자동 정지
+        - 자막 지원 기능(on/off)
+
+
+
+
+
+
+< Media Connect Center >
+    - 통합 환경 제공 서비스
+    - Object Storage, VOD Station, Live Station과 결합
+    - **서비스 신청 최소 인원은 3명!!
+

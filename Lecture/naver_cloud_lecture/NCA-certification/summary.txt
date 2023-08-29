@@ -1,0 +1,81 @@
+<중요>
+
+비용 : CAPEX < OPEX
+
+Workplace : 워크플로우(결재), 인사, 회계, 급여 SaaS
+
+상품 의존성 : 리전 (VPC 상품), 존 (Subnet 상품), 멀티존(CloudDB 상품)
+
+Bare metal Server 제공 배경
+• 가상화 서버는 하드웨어를 직접 제어할 수 없고 ‘하이퍼바이저’라는 중계층을 거치게 되므로 물리 서버를 그대로 사용하는 것에 비해 성능 저하가 발생
+• 가상 서버는 보통 동일한 하드웨어 자원을 공유해서 사용하므로 가상화 서버가 상호 간섭 현상으로 인해 성능을 제대로 발휘하지 못할 가능성이 있음
+• 데이터베이스와 같은 성능이나 운영환경에 민감한 부분은 선뜻 클라우드를 도입할 수 없어 일부 기업들은 물리 서버에 구축하는 ‘하이브리드 클라우드’ 전략
+• 서버호스팅과 같지만, 베어메탈 서버는 직접 물리 서버를 구매하고 설치하는 것이 아니라 클라우드 가상 서버와 동일하게 클라우드 환경에 신속하게 배치하고 사용할 수 있다는 점에서 다름
+
+VPC
+
+ACG 최대 생성 개수 : VPC당 500개
+적용 대상 : 서버 NIC
+적용 ACG 개수 : NIC 당 3개
+속성 : 맵핑 정보 변경 가능
+의존성 : VPC에 의존
+Rule 속성 : In / OutBound
+Rule 최대 생성 개수 : In 50개 / Out 50개
+
+Auto Scaling 설정
+
+- Launch Configuration : 액션의 대상이 되는 서버의 기본 템플릿
+- Autoscaling Server Group : 액션을 위한 논리적 그룹
+- Event Rule : 모니터링 매트릭 설정
+
+현재 Classic 환경에서 Kubernetes Service 신규 생성 불가능
+
+Public Subnet 내에 있는 서버만 Public IP 부여 가능
+
+Public IP : 서버당 1개의 Public IP만 부여 가능, 서버반납 시 자동 반납
+VPC당 최대 200개의 Subnet 생성 가능
+
+서비스 요금 = 월 전송량(transfer) 요금 + 월 요청수(request) 요금
+
+Cloud DB for MySQL
+
+- 자동 Fail-Over를 지원하며 최대 10대까지 복제 Slave ( Read Only ) 확장 가능
+- Private Load Balancer를 이용해서 Read 부하 분산 가능
+- 자동 백업 주기를 설정할 수 있으며, 최대 30일 백업 파일 보관
+
+Redis Cluster 제공
+• 샤드 최소 3개 ~ 최대 10개, Shard 당 Slave node 구성은 최대 4개
+• Auto Sharding 지원
+• 메모리 공간을 추가해야 할 경우 운영중에 스펙 업그레이드 가능
+• 자동 Fail-over 기능을 독자적으로 개발하여 제공함으로써 장애발생 시에도 안정적인 서비스 제공
+
+Outbound Mailer (demo)
+
+- 템플릿에는 네이버 메일과 동일한 입력기인 스마트 에디터를 제공하고 치환 태그 기능을 통해 변수 사용 가능
+
+Clova Chatbot
+
+- 라인, 톡톡, 카카오톡, 페이스북 메신저와 연동
+
+Cloud Log Analytics
+
+- 최대 100GB, 30일 동안 보관 가능
+
+Cloud Data Streaming Service
+
+- Apache Kafka Cluster를 쉽고 간편하게 구축
+
+App Safer
+
+- 보안 위협 여부를 실시간으로 탐지
+
+System Security Checker
+
+- 세부 점검 항목 : UMASK 설정 관리, 홈 디렉토리 권한 설정, 익명 FTP 비활성화 등
+
+Live Station
+
+- Thumbnail Image 추출
+- 타임머신(Time Shift) 기능으로 놓치지 않는 라이브 방송 서비스 구현 가능
+- CDN 연동을 통해 안정적인 송출 가능 및 동시 송출
+- 녹화 저장(MP4, HLS)

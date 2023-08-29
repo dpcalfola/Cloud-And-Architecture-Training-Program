@@ -1,0 +1,69 @@
+lab 6
+
+
+< TG >
+    1. TCP (nlb-tg)
+    2. HTTP - server1 (alb-tg)
+    3. HTTP - server2 (alb-ip-tg)
+
+
+
+
+< Load Balancer >
+
+    1. Network Load Balancer (lab-nlb)
+
+        - TCP 80 로드 밸런서
+        - log file path
+            - /var/log/httpd
+            - [root]# tail -10 access_log
+            - concept of toss network traffic
+
+
+
+
+
+    2. Application Load Balancer (lab-alb)
+
+        - network: Public type
+        - HTTP 80 로드 밸런서
+        - 2대의 서버가 들어가있는 Target Group으로 설정
+        - *** 클라이언트 IP를 확인 할 수 없음
+
+
+        2.1 분기 접속 가능 (특정 경로로 접속시 특정 서버로 분기)
+            - GUI 로드밸런서 규칙/조회 변경 버튼
+
+            - Rule 추가
+                -> 규칙 추가 (Pass Pattern) -> /ip/
+                -> 위의 규칙의 True 일때 특정 Target Group으로 분기
+                -> 우선순위 존재
+                -> Default 순위 10000 -> 기본 로드밸런싱
+
+
+
+        2.2 X-forwarded-for
+            *** - 설정하는 리눅스 파일 경로와 방법 암기
+                    - "%{X-Forwarded-For}i
+                    - httpd 재시작
+
+
+
+
+
+
+
+
+
+< CDN+ Lab >
+
+    - Referrer Domain
+        - 로드밸런서 항목의 접속 정보 입력(도메인 기반)
+        - 이외의 도메인으로 접속시 접근 차단)
+
+
+    - CDN 설정 이후
+        - 정적 컨텐츠의 접속 위치를 CDN 을 통해 받도록 서비스에 설정함
+        - ex)
+            기존: <img src='logo1.jpg' title='uuuuu' alt=''/>
+            변경: <img src='http://CDN접속정보/logo1.jpg' title='uuuuu' alt=''/>

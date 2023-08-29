@@ -1,0 +1,79 @@
+쿠버 워커노드 최대 50대
+
+
+
+클라우드 인사이트 <-> CLA(클라우드 로그 분석)
+
+
+
+모두고르시오 -> 2개, 3개, 4개 가능성
+
+
+
+
+리눅스 명령어
+
+1. 컴퓨팅 파워
+    - sar: CPU, 메모리, 디스크, 네트워크(IO 전송량) 등의 시스템 리소스 사용률을 모니터링
+    - ps: 현재 실행중인 프로세스 목록을 확인
+    - top: 현재 실행중인 프로세스의 상태를 실시간으로 모니터링
+
+
+
+2. ping
+    -i : 지정된 시간 간격으로 ping을 보냄
+    -n : 지정된 횟수만큼 ping을 보냄 (windows?)
+    -c : 지정된 횟수만큼 ping을 보냄 (linux)
+
+
+
+3.
+    uuidgen: uuid 생성
+    blkid: uuid 확인
+    xfs_repair -L /dev/xcvde1: uuid 변경
+
+
+
+
+
+
+
+성능 측정
+
+    웹 성능측정
+        - WMS
+        - Ngrinder (부하테스트 툴 - 동접자 수 측증)
+        - PinPoint (네이버 자체 개발)
+        - AB (아파치 벤치마크)
+
+    MySQL 성능측정
+        - Perconal TPCC
+        - sysbench
+        - Apache JMeter
+
+
+
+
+
+
+
+
+윈도우 TS 툴
+
+    - debug Diag
+    - PAL (Performance Analysis of Logs
+    - xPerf
+
+
+
+
+API 형태 서비스 -> 구독
+
+
+
+
+클렌징
+
+    - CDN
+    - Container bucket
+    - 아카이브 스토리지 구독 해지

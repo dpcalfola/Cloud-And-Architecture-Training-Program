@@ -1,0 +1,232 @@
+< Sub Account >
+
+    서브 어카운트 생성하여 각각의 어카운트에서 권한을 부여할 수 있다.
+
+
+    대시보드
+        - 서브계정 수, 그룹수, 정책 수 , 접속 페이지 설정
+
+
+    Sub Accounts
+        - 서브 계정의 정보를 일시정지, 해지 가능
+        - 접근 유형 제어:
+            - 콘솔
+            - API Gateway Access
+            -
+
+        - 2차 인증 설정
+
+        - 비밀번호 재설정 제어 (만료일, 첫 로그인시 비밀번호 변경)
+
+
+
+
+    Groups
+        - 서브 어카운트들을 그룹핑
+        - 그룹 정책 설정 가능
+            - 권한 (서브어카운트 계정과 그룹 계정은 AND조건)
+
+
+    Policies
+        1. System managed
+        2. User created
+
+
+
+
+
+
+
+< WMS - Web service Monitoring System >
+
+
+    - 웹 서비스 모니터링 시스템
+    - 에이전트 기반 모니터링
+    - 한국 미국, 싱가폴, 일본, 홍콩, 독일에서도 측정 가능
+
+
+    - 모니터링 유형
+        - Virtual test ( 서버에 가상 브라우저 생성하여 품질 테스트)
+        - Scenario test (ex 입장, 로그인, 이동경로에 따른 웹사이트의 동작 여부 파악)
+
+
+    - *** 국가
+        -> 한국, 미국서부, 일분, 홍콩, 싱가폴, 독일
+
+
+
+
+
+    - *** 테스트 결과
+        - 로드시간, 페이지사이즈(MB), 리퀘스트(num), 에러(num)
+        - 에러에 대한 상세 정보 확인 가능
+
+    - *** 모니터링 주기:
+        - 1분, 5분, 10분
+
+    - 통보, 알림 제어
+
+
+    -*** 모니터링 필터링 기능
+        - URL
+        - urlprefix
+        - js
+        - jsprefix
+
+
+
+
+
+
+
+< Network Traffic Monitoring >
+
+    -*** 기본 제공 7개 Default Chart
+        - Region별 Internet Outbound
+        - Region별 전용회선 Outbound
+        - 서버별 Internet
+        - 서버별 전용회선
+        - 서버 그룹별 Internet
+        - 서버 그룹별 전용회선
+        - 국가별 Internet
+
+    - 시간 별 집계 선택
+        - 1분, 15분, 30분, 1시간, 1일
+
+
+    - 수집되지 않는 네트워크 트래픽
+        - NAT Gateway
+        - SSL VPN
+        - IPsec VPN
+
+    - 데이터 최대 저장기간 30일
+
+    - 측정이 불가능한 네트워크 트래픽: __unclassified__ 으로 표기
+
+
+
+
+
+
+
+
+< Cloud Activity Tracer >
+
+    - 작업 내역을 검색
+        - 메인계정, 서브계정
+        - 상품과 상품의 리소스별
+        - 리소스가 속한 리전 정보 기준
+
+    - 콘솔, API 구분
+
+    - 1일 1주 1개월 3개월 (최대 3개월 보관 후 삭제됨)
+
+    - *** 작업내역 상품 리전 계쩡구분 조회기간
+
+
+
+
+
+< Ncloud Tools >
+    - 대시보드
+    - 리소스제어 (CLI, SDK, API)
+    - 클라우드 관리 오픈소스 연동 됨
+
+
+
+< Resource MManager >
+    -
+
+
+
+
+
+< Cloud Insight >
+    - 통합 모니터링
+    - 유지보수 일정 관리
+
+
+    - ***이벤트 룰 설정 순서
+        - 감시 상품 선택
+        - 감시 대상 선택
+        - 감시 항목(메트릭 항목)
+        - 메트릭 조건 설정(트레숄드, 임계치)
+
+    - 클라우드 인사이트 에이전트가 잘 동작하는지 확인하는 명령어
+        - Linux: ps -ef | grep agent
+        - Window: Window service에서 "nsight2_agent" 서비스의 상태를 확인
+
+
+    - 메트릭 조건 설정 레벨
+        - info
+        - Warning
+        - Critical
+
+    - 클라우드 인사이트
+        - 1년간 데이터 보관
+        - Export
+            - JSON, CSV, SLS, PNG
+
+
+
+
+< Cloud Advisor >
+
+    - 점검 항목들에 대해 알림
+    - **점검 항목들에 대해 읽어볼것 (184페이지)
+
+
+
+
+
+
+< Cloud Log Analysis >
+
+    - 1주일 1GB 무료
+    - 1달 최대 100GB 최대
+    - 원하는 상품에 대해 로그 수집 가능
+
+    - ** Cloud for DB 서비스
+        - CLA 에서 확인
+        - Console DB 메뉴에서 로그 확인 가능
+
+    - ***CLA에서 제공하는 템플릿 사용가능 또는 커스텀 템플릿 가능
+        - 제공 템플릿
+            - SYSLOG
+            - MySQL
+            - Apache
+            - Tomcat
+            - Security
+            - ...
+    -
+
+
+
+
+
+
+
+< ELSA >
+
+    - Effective Log Search & Analytics
+
+    - 로그 검색, 모바일 크래시로그 조회, API 로그
+    - 로그 서치 항목 (194페이지)
+
+
+
+
+
+< 반드시 읽어볼것 >
+
+1.쿼리스트링
+    - 리사이즈 크롭 등의 옵션(**), 파라미터
+
+
+2. 네트워크 상품 중
+    - "글로벌 트래픽 매니저" 서비스 내용
+        - 알고리즘 종류
+
+3. 보안 상품중
+    - Certification manager
+    - 인증서 통합 관리

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+wget -P /root/ wget https://kr.object.ncloudstorage.com/k8s-edu/lab_source.tar
+cd /root
+tar -xvf lab_source.tar
+chmod 755 /root/lab_source/lab1/install_kubectl.sh
+bash /  root/lab_source/lab1/install_kubectl.sh

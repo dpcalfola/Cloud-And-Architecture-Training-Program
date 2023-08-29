@@ -1,0 +1,162 @@
+
+
+
+Create VPC
+
+Create NACL *3
+
+Create Subnet
+    web (public)
+    db (private)
+    lb (private)
+
+
+ACG
+    web - ICMP, TCP, UDP
+    db -
+
+
+
+
+
+
+
+
+
+
+
+< Load Balancer >
+
+1. Create Target Group
+
+
+
+
+
+
+
+
+
+< Auto Scaling >
+
+
+1. Launch Configuration
+
+    - Init script 포함
+    - Zone 이 없음
+
+
+
+
+2. Auto Scaling Group
+
+    - Launch Configuration 의존성
+    - VPC, Subnet(web subnet)
+    - Prefix (lab-as)
+        -> auto scaling 에 의해 생성된 아이인지 확인하기 위함
+    - 최소, 최대, 기대용량 설정
+    - Cool down 설정 (서버가 증성될때까지 대기하는 시간)
+    - 헬스체크 보류기간 최소시간 (30초, Default)
+    - 헬스체그 유형 - 로드벨런서(-> target group)
+
+    - 네트워크 접근 설정
+        - ACG
+    - 정책설정
+        - 증가 감소 조건 ?
+    - 통보 조건
+        - 통보대상 그룹에서 가져오는 방식으로 설정
+        - SMS 또는 e-mail
+
+
+
+3. Event Rule 생성 (-> Cloud Insight 하위 메뉴)
+
+    -
+
+
+
+
+
+
+
+
+
+
+
+
+< DB 생성 >
+
+MySQL
+    - innoDB version
+
+
+
+    - 고가용성 여부: 설정시 2개 서버 생성
+    - VPC 설정
+    - 멀티존 구성 가능
+    - 두개의 서브넷 설정 가능 (서로 다른 존에 서버 생성)
+    - 암호화 여부
+    - 스토리지 타입: SSD, HDD
+    - 10GB시작 -> 10GB씩 증가 -> 최대 6TB
+    - Private Subdomain 설정 가능
+
+    - ACG 자동 설정됨
+
+    - DB config 설정 (NCP 에서 제공하는 설정값 - 수정 불가)
+    - DB log -> CLA
+
+    - 백업 파일 보관기능
+    - 백업 시간 설정 가능 (15분 단위)
+
+
+
+
+
+
+
+< Cloud Insight >
+
+Template 생성
+
+    - 템플릿 이름
+    - 메트릭 선택 -> 조건 설정 -> 알람방법
+    - 액션 선택 -> 메트릭 조건이 충족 되었을떄 Auto Scaling 정책 트리거로 설정 가능
+    - 룰 이름 지정
+
+
+
+
+
+
+
+
+
+
+< Cloud Outbound mailer >
+
+1. Manage Template
+    - Template Unique ID
+    - name
+    - 송신자 정보
+    - 제목
+        - 개인화된 제목 설정 가능 (치환태그)
+        - ${name}님을 위한 ${service} 서비스 안내
+    - 내용
+        - 내용에도 치환태그 사용 가능
+    - 치환태그 value
+        -> file upload 로 가능
+        -> 입력 양식 제공
+        -> Template 에 사용된 치환태그를 반영하여 생성된 엑셀 형식의 양식이 제공됨
+    - 예약 발송 가능
+
+
+
+
+
+
+
+
+< 개별 서비스 모니터링 >
+1. 서버 모니터링
+2. LB 모니터링
+3. 서버 상세모니터링 -> Cloud Insight ?

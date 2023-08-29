@@ -1,0 +1,117 @@
+관리형 DB (cloud DB for <DB Engine>)
+
+    - Root 계정 제공하지 않음
+    - 사용자 계정 생성해야함
+    - 장애 발생시 자동 복구하는 완전 관리형
+
+
+
+    - 복원 시 RO 전용으로 복원
+    - RW 복원하기 위해서는 백업 데이터를 이용하여 새로운 DB 를 생성해야함
+
+
+DB Backup
+    - Redis 를 제외하곤 모두 30일간 보관
+
+
+
+
+< MySQL >
+
+    - 최대
+        - 32vCPU
+        - 256GB RAM
+        - 6TB Disk
+
+    - 최대 10대의 read replica
+    - Fail-over
+
+    - 모니터링, 알람
+
+    - 스토리지
+        - 최소 10GB
+        - 10GB 단위로 증가
+        - 최대 6TB
+
+    - Public Subnet 에 생성된 Public Domain 부여햐여 외부 접근 가능
+
+    - 3306
+
+    - DB 생성시 자동생성 항목
+        - ACG
+        - Private IP
+
+    - 가능: 멀티 존
+    - 불가능: 멀티 리전
+
+    - 콘솔에서 몇가지 Process list 확인 가능
+    - Kill Session 가능
+
+
+
+
+    콘솔 제어 항목
+
+        - DB 이벤트 항목
+            - OS 영역
+            - DB 영역
+
+        - DB minor version upgrade
+            - 스탠바이 먼저 업그레이드 -> 스탠바이를 액티브로 변경
+
+        - innodb_buffer_pool_size
+
+        - 대부분의 항목은 DB 재부팅 필요
+
+
+
+
+
+< Redis >
+
+    샤드 - 최소 3개 최대 10개
+    샤드 레플리카 - 각 샤드당 4개의 노드 구성 가능
+    데이터 백업
+        - 매일 1회 지정 시간 캐시 데이터 자동 백업
+        - 백업된 데이터로 신규 Redis 서버 생성하여 복원
+        - 오토샤딩
+
+
+
+
+
+
+
+< mongoDB >
+
+    - 샤딩, 레플리카셋 방식으로 선택 가능
+    - Standalone, Replica Set, Sharded Cluster
+
+    - Community Edition, Enterprise Edition 선택 가능
+    - **50GB 부터 시작, 10GB 단위로 증가, 최대 2TB
+    - 매일 자동 백업, 최대 30일까지 보관
+
+
+
+    1. Replica Set
+
+    2. Sharded Cluster
+
+    3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

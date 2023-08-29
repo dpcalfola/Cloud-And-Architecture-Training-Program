@@ -1,0 +1,161 @@
+* Classful Addressing
+    각 클래스별 IP range 암기
+
+
+* 비트마스크, 서브넷마스크당 호스트 수
+    - 네이버 클라우드의 경우 -7 (7개는 네이버가 예약함)
+
+
+
+* IP 주소범위
+    - RFC1918대역인
+        - 10.0.0.0/8
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+    - 최소 /28 에서 최대 /16까지 Netmask 생성가능
+    - Subnet을 이용하여 VPC안에서 Segment 생성관리가능
+
+
+
+* VPC Peering
+    - 타 계정 VPC 연결시 필요한 정보
+        - 로그인 ID
+        - VPC ID
+        - VPC 이름
+
+    - Peering 이후 라우팅 필요
+        - VPC 하위 메뉴에 Route Table 메뉴 있음
+        - Route Table 생성 후 > Routes 설정
+
+
+
+
+* VPC subnet
+
+    - VPC 당 최대 200개 subnet 생성 가능
+    -
+
+
+
+
+
+* 로드밸런서
+
+    리전당 50개
+    서로 다른 존의 서버도 연결 가능
+
+    종류:
+        로
+
+    스펙 단위:
+        - CPS: Connection Per Second (초당 연결 수)
+        - 각 로드밸런서 타입별로 용량 암기 (Application, Network, Network Proxy)
+
+    로드밸런싱 알고리즘
+        - Round Robin
+        - Least Connection
+        - Source IP Hash
+        - **제공하지 않음: Weighted 방식
+
+
+
+    타입
+        - Application:
+            - URL 기반 분기 가증
+
+        - Network
+            - DSR 기능 지원
+            - 고정세션(sticky session) 지원하지 않음 (쿠키 사용하지 않음)
+
+        - Network Proxy
+            - 세션 유지
+
+
+    **DR 방식의 로드밸런싱 제공
+
+
+
+    KeepAlive <-> Connection Idel Time
+
+
+    인증서 관련
+        - 로드밸런서에 ssl 인증서 위치 가능
+        - SSL 이용시 redirect 기능
+
+
+    X-Forwarded
+
+
+
+
+
+
+
+
+
+
+< Global DNS >
+
+    레코드 타입 지원
+        - A: 직접 연결
+        - CNAME: 서브도메인으로 연결
+        - PTR: ip -> 도메인
+        - AAAA: Iv6
+
+
+
+
+
+
+
+< CDN+ >
+
+    - 아카마이(Akamai)를 통해 CDN 서비스
+
+
+
+    Cash default Max-age: 1주일? (변경 가능)
+
+    Cashing Expire
+        - 캐시 서버에서 캐싱된 콘텐츠가 원본 서버에서 변경되었는지 여부를 확인하는 주기
+        - 원본 서버의 응답헤더에 Cache-Control: Max-age 가 존재
+
+    Purge
+        - 캐시 서버에 저장된 콘텐츠 삭제하는 기능
+        - 대규모 수행시 원본 부하 고려 필요
+
+    압축 설정 가능
+
+
+    Secure Token
+        - 일회성으로 엑세스 토큰 생성
+        - SDK 제공 (Python, Java, Ruby, NodeJS)
+
+    Referer 설정
+        - 특정 도메인에서만 접근 가능하도록 설정 가능
+        - 도메인 기준의 접근 제어 방식
+
+
+
+
+
+
+
+
+
+< IPsec VPN >
+
+    - 망과 망사이에 VPN 연결
+    - 회사 망에 VPN 장비가 있어야 한다
+    - 고객사의 VPN 장비와 NCP VPN 장비를 연결
+
+
+
+< SSL VPN >
+    - 유저와 사내망의 VPN 연결
+
+
+
+
+
+
