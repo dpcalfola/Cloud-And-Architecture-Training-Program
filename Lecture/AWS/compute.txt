@@ -1,0 +1,184 @@
+EC2 = Elastic
+
+
+AutoScaling
+
+
+
+
+
+
+
+
+< TAG >
+
+
+EC2 -> 서비스명
+EC2를 이용하여 만든 가상 머신 -> instance
+
+
+
+인스턴스 생성시 이름 생성 이후에 태그 추가 가능
+    - 태그는 키:밸류 형태로 구성
+    - 태그는 최대 50개 까지 구성
+
+
+
+
+
+
+
+< Create Instance >
+
+AMI
+    - Amazon Machine Image
+    (= Root Volume Template)
+
+    - 마켓플레이스에 여러가지 이미지 존재
+    - cisco r
+
+
+AMI+
+    - 사용자 지정 이미지
+    - 현재 서버의 상태를 통채로 저장
+
+
+Default network
+    -
+
+
+
+
+< Instance Type >
+
+c6g.xlarge
+    - c: 인스턴스 패밀리
+    - 6: 세대
+    - g: 추가 속성
+    - xlarge: 크기
+
+
+- 대략 세대가 높을수록 가성비가 좋음
+
+- 추가속성
+    - g: gravition (AWS에서 만든 프로세서)
+    - in: 인텔 프로세서
+    - a: ARM 프로세서
+    - n: 네트워크 성능 향상
+
+
+
+< Compute Optimizer >
+
+    - ML 기반으로 최적의 리소스 추천
+
+
+
+< EC2 키 페어 >
+
+- 프라이빗키 (유저)
+- 퍼블릭키 (서버)
+
+- EC2 인스턴스 생성시 username/password 중 password 가 없는것이 디폴트
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+< 테넌시 >
+
+- 공유 테넌시
+    - 하나의 물리적 서버에 여러개의 가상 서버가 존재
+    - 가상 서버간의 성능 저하가 발생할 수 있음
+
+- 전용 인스턴스
+    - 하드웨어 수준에서 격리
+
+- 전용 호스트
+    - 독립된 하드웨어(스펙) 리소스 제공
+
+
+
+
+< 배치 그룹 >
+
+- 클러스터
+- 분산현
+- 파티션
+
+
+
+
+
+
+< init script , s3 데이터 접근 권한 >
+
+IAM -> 역할 -> 역할 생성 -> EC2 -> AmazonS3FullAccess -> 역할 이름 설정 -> 역할 생성
+
+
+
+
+
+
+
+< 인스턴스 메타데이터 >
+
+
+
+
+
+
+
+< EBS = Elastic Block Store >
+
+- 종류별로 선택 가능
+
+
+(참고)
+IOPS = Input/Output Operation Per Second
+
+
+
+
+< Instance Store Volume >
+- 특정 상황에서 사용할 수 있는 공짜, 임시 저장소 (휘발성)
+- 스토리지 유형에서 하이픈(-) 으로 표시되어 있으면 사용 할 수 없다
+
+
+
+
+
+
+< EC2 구매 옵션 >
+
+- 온디맨드
+    - 시간 단위로 비용 지불
+    - 사용량에 따라 비용이 책정됨
+    - 비용이 비싸지만, 언제든지 사용 가능
+
+- Savings Plan
+    - 1년, 3년 단위로 비용 지불
+
+    - Compute Saving Plans
+    - EC2 Instance Saving Plans
+
+
+- 스팟 인스턴스
+    - 싯가
+    - 기회가 되면 저렴하게 사용 가능
+    - 여차하면 뺏김
+
+
+
+
+
+< 람다 >

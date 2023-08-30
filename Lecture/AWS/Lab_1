@@ -1,0 +1,14 @@
+EC2 인스턴스 Default VPC
+
+    -> 퍼블릭 서브넷 생성
+    -> 프라이빗 서브넷과 퍼블릭 서브넷을 1대1로 Internet Gateway 가 NAT 연결
+
+
+사용자 이름
+    ec2-user (Amazon Linux 2 AMI)
+
+
+ssh 접속
+
+sudo ssh -i "key.pem" ec2-user@public_ip
+
