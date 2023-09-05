@@ -57,4 +57,12 @@
      * 과정:
        * VPN 혹은 전용선으로 연결 확보
        * DNS 설정을 통해 VPC endpoint로 접근 가능하도록 설정
-  3. 
+
+
+
+
+
+### 연습
+* aws workshop < 원하는 아키텍쳐 > 검색
+* AWS skill Builder
+* AWS Mainpage -> 설명서 -> 모든 설명서 
