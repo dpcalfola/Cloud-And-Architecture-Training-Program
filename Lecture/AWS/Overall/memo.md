@@ -65,4 +65,14 @@
 ### 연습
 * aws workshop < 원하는 아키텍쳐 > 검색
 * AWS skill Builder
-* AWS Mainpage -> 설명서 -> 모든 설명서 
+* AWS Mainpage -> 설명서 -> 모든 설명서
+
+
+
+
+
+
+
+### Auto scaling Groups 유예시간
+* Auto scaling Groups -> Health Check Grace Period -> Second
+* 인스턴스가 생성되고 유예시간동안은 헬스체크를 하지 않는다
