@@ -76,3 +76,10 @@
 ### Auto scaling Groups 유예시간
 * Auto scaling Groups -> Health Check Grace Period -> Second
 * 인스턴스가 생성되고 유예시간동안은 헬스체크를 하지 않는다
+
+
+
+
+### VPC
+- VPC: Virtual Private Cloud
+- 논리적으로 격리된 개인 네트워크

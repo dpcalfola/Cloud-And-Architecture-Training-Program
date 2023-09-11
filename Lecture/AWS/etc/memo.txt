@@ -1,0 +1,8 @@
+HttpAccessLogsGroup
+
+HttpErrorLogGroup
+
+
+
+httpd log path
+/var/log/httpd/
