@@ -1,0 +1,45 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: myeks
+  region: ap-northeast-2
+
+
+privateCluster:
+  enabled: true
+  additionalEndpointServices:
+    - "autoscaling"
+
+
+vpc:
+  subnets:
+    private:
+      ap-northeast-2a: { id: subnet-0f9d81587f2328168 }
+      ap-northeast-2c: { id: subnet-0822da32905929d13 }
+
+nodeGroups:
+  - name: myeks-work-ng
+    instanceType: t3.medium
+    desiredCapacity: 2
+    privateNetworking: true
+    ssh:
+      allow: true  # Enable SSH access
+      sourceSecurityGroupIds:
+        - sg-0c7f92b4ad3da9d02  # Replace with the security group ID that controls worker node access
+
+managedNodeGroups:
+  - name: myeks-managed-ng
+    instanceType: t3.medium
+    desiredCapacity: 1
+    privateNetworking: true
+    ssh:
+      allow: true  # Enable SSH access
+      sourceSecurityGroupIds:
+        - sg-0c7f92b4ad3da9d02  # Replace with the security group ID that controls worker node access
+
+
+
+# < Run command >
+# eksctl create cluster -f eksctl-cluster.yaml \
+#  --dry-run | yh

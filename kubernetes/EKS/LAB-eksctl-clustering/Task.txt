@@ -1,0 +1,156 @@
+주제: "Lab 02: Amazon EKS를 사용한 컨테이너 환경 구축 실습" 복습
+    - cloud9 이 아닌 EC2 인스턴스에서 진행
+    - 실습 명령어 분석 및 이해
+
+
+문서 정보
+    - 최초 작성일: 2023-09-20
+    - 최종 수정일: 2023-09-21
+    - 미완성 (인스턴스에 변수 지정까지 작성)
+
+
+
+
+1. Default VPC 에 EC2 생성
+    - t3.medium
+    - 20GB
+    - No User Data
+
+
+2. SSH 접속
+    ```shell
+    ssh -i <pem 파일 경로> ec2-user@<퍼블릭 IP>
+    ```
+
+
+
+
+
+3. AWS CLI 2 로 업그레이드
+    - 기존버전: aws-cli/1.18.147 Python/2.7.18 Linux/5.10.192-182.736.amzn2.x86_64 botocore/1.18.6
+
+    - 업그레이드
+        ```shell
+        # 패키지 다운로드
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+        # 압축해제
+        unzip awscliv2.zip
+
+        # 설치
+        sudo ./aws/install
+
+        # 쉘 설정파일 리로드 (재접속 없이 적용하기 위해 사용)
+        source ~/.bashrc
+        ```
+
+    - 자동완성 기능 추가
+        ```shell
+        # aws_completer 파일의 위치 확인
+        which aws_completer
+
+        # 환경변수 PATH 에 추가
+        #   /usr/local/bin 위치에 있는 파일은 어디서는 실행 가능 하도록 만듬
+        #   env 명령어로 현재 저장되어 있는 환경변수 확인 가능
+        export PATH=/usr/local/bin:$PATH
+
+
+        # .bash_profile 적용 (!! - 이 명령어가 필요한 이유 찾지 못함)
+        source ~/.bash_profile
+
+
+        # 자동완성 기능 추가
+        complete -C '/usr/local/bin/aws_completer' aws
+
+        ```
+
+
+
+4. 유용한 툴 설치
+    ```shell
+    # jq (json parser)
+    sudo yum install jq
+
+    # yh (yaml highlight)
+    wget https://github.com/andreazorzetto/yh/releases/download/v0.4.0/yh-linux-amd64.zip
+    unzip yh-linux-amd64.zip
+    sudo mv yh /usr/local/bin/
+    ```
+
+
+
+
+5. AWS configure (9-20 실습의 IAM 역할 생성/적용 대체)
+    - aws configure 명령어로 KeyID, AccessKey, Region, Output 설정
+    - ~/.aws 디렉터리가 생성되며, 설정값 확인 가능
+
+
+
+
+
+6. 변수 지정
+
+    - ACCOUNT_ID
+        ```shell
+        # AWS 계정의 호출자 식별 정보를 가져옴
+        #   --output text : 출력 형식을 text 로 지정
+        #   --query Account : 출력 결과에서 Account 항목만 추출
+        aws sts get-caller-identity --output text --query Account
+
+        # 위의 값을 ACCOUNT_ID 변수에 저장
+        export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
+        ```
+
+    - AWS_REGION
+        - 방법 1: aws configure 에서 리전 가져오기
+            ```shell
+            # 현재 설정된 리전 확인
+            aws configure get region
+            ```
+
+        - 방법 2: 현재 실행중인 인스턴스의 메타데이터에서 리전 정보 가져오기
+            ```shell
+            curl -s http://169.254.169.254/latest/meta-data/placement/region
+            ```
+
+            - curl:
+                Client for URLs"의 약어
+                URL 문법에 따라 데이터를 전송하는 커맨드라인 툴
+
+                옵션
+                    -s: silent 모드. 진행과정을 표시하지 않음
+                    -O: 파일로 저장(대문자 주의)
+
+                더 많은 옵션 정보
+                    curl -h
+                    curl --help all
+
+            - http://169.254.169.254/
+                AWS 인스턴스 내에서 실행되는 메타데이터 서비스(Metadata Service)에 대한 기본 URL
+
+
+        - 위의 결과를 변수에 저장
+            ```shell
+            # 방법 1
+            export AWS_REGION=$(aws configure get region)
+
+            # 방법 2
+            export AWS_REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/region)
+            ```
+
+    - 변수 확인
+        ```shell
+        echo $ACCOUNT_ID
+        echo $AWS_REGION
+        ```
+
+    - 변수를 bash_profile에 저장
+        ```
+        echo "export ACCOUNT_ID=${ACCOUNT_ID}" | tee -a ~/.bash_profile
+        echo "export AWS_REGION=${AWS_REGION}" | tee -a ~/.bash_profile
+        ```
+
+
+
+
+(미완성)
