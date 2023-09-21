@@ -15,3 +15,10 @@
 
 # pka files
 *.pka
+
+
+# ENV
+.env
+env
+*/.env
+*/env
