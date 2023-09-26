@@ -1,0 +1,23 @@
+(failed initialization command)
+
+sudo kubeadm init --apiserver-advertise-address 192.168.64.50 \
+  --pod-network-cidr 172.30.0.0/16 \
+  --upload-certs \
+  --control-plane-endpoint ctrl.example.com
+
+
+
+(Initialization command)
+sudo kubeadm init
+
+이후 나오는 명령어를 복사해서 worker 노드에서 실행
+
+
+
+
+
+
+sudo kubeadm init --apiserver-advertise-address 192.168.65.50 \
+  --pod-network-cidr 172.30.0.0/16 \
+  --upload-certs \
+  --control-plane-endpoint ctrl.example.com

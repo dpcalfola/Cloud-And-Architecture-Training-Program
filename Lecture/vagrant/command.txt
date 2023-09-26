@@ -1,0 +1,9 @@
+vagrant up
+
+
+vagrant global-status
+
+
+
+vagrant halt
+	- stop the VM
